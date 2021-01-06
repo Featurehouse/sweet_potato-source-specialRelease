@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "sweet_potato:enchanted_jungle_leaves",
+    "sweet_potato:enchanted_oak_leaves",
+    "sweet_potato:enchanted_spruce_leaves",
+    "sweet_potato:enchanted_dark_oak_leaves",
+    "sweet_potato:enchanted_acacia_leaves",
+    "sweet_potato:enchanted_birch_leaves",
+
+    "sweet_potato:common_christmas_tree_leaves",
+    "sweet_potato:gifted_christmas_tree_leaves"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "sweet_potato:item/peel",
+  "textures": {
+    "layer0": "sweet_potato:item/bundled_sock"
+  }
+}

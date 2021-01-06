@@ -1,0 +1,35 @@
+{
+  "parent": "sweet_potato:spmxmas/is_cold",
+  "display": {
+    "icon": {
+      "item": "sweet_potato:treating_bowl"
+    },
+    "title": {
+      "translate": "advancement.spmxmas.make_a_wish.title"
+    },
+    "description": {
+      "translate": "advancement.spmxmas.make_a_wish.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "sweet_potato:get_treating_bowl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sweet_potato:treating_bowl"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "sweet_potato:get_treating_bowl"
+    ]
+  ]
+}

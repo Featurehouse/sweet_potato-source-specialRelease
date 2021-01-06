@@ -1,0 +1,31 @@
+accessWidener v1 named
+accessible class net/minecraft/entity/passive/PigEntity
+accessible class net/minecraft/entity/passive/ParrotEntity
+accessible class net/minecraft/entity/passive/ChickenEntity
+accessible class net/minecraft/block/entity/BlockEntityType$BlockEntityFactory
+accessible class net/minecraft/block/entity/player/PlayerEntity
+accessible class net/minecraft/advancement/criterion/Criteria
+accessible class net/minecraft/entity/LivingEntity
+accessible class net/minecraft/entity/passive/VillagerEntity
+accessible class net/minecraft/loot/context/LootContextTypes
+accessible class net/minecraft/client/item/ModelPredicateProviderRegistry
+accessible class net/minecraft/world/gen/stateprovider/BlockStateProviderType
+accessible class net/minecraft/world/gen/foliage/FoliagePlacerType
+accessible class net/minecraft/block/SaplingBlock
+
+accessible field net/minecraft/entity/passive/PigEntity BREEDING_INGREDIENT Lnet/minecraft/recipe/Ingredient;
+mutable field net/minecraft/entity/passive/PigEntity BREEDING_INGREDIENT Lnet/minecraft/recipe/Ingredient;
+accessible field net/minecraft/entity/passive/ChickenEntity BREEDING_INGREDIENT Lnet/minecraft/recipe/Ingredient;
+mutable field net/minecraft/entity/passive/ChickenEntity BREEDING_INGREDIENT Lnet/minecraft/recipe/Ingredient;
+accessible field net/minecraft/entity/passive/ParrotEntity TAMING_INGREDIENTS Ljava/util/Set;
+accessible field net/minecraft/entity/player/PlayerEntity abilities Lnet/minecraft/entity/player/PlayerAbilities;
+accessible field net/minecraft/entity/player/PlayerEntity inventory Lnet/minecraft/entity/player/PlayerInventory;
+accessible field net/minecraft/advancement/criterion/Criteria VALUES Ljava/util/Map;
+accessible method net/minecraft/entity/LivingEntity getSoundVolume ()F
+accessible method net/minecraft/entity/LivingEntity getSoundPitch ()F
+accessible method net/minecraft/entity/passive/VillagerEntity sayNo ()V
+accessible field net/minecraft/loot/context/LootContextTypes MAP Lcom/google/common/collect/BiMap;
+accessible field net/minecraft/client/item/ModelPredicateProviderRegistry ITEM_SPECIFIC Ljava/util/Map;
+accessible method net/minecraft/world/gen/stateprovider/BlockStateProviderType <init> (Lcom/mojang/serialization/Codec;)V
+accessible method net/minecraft/world/gen/foliage/FoliagePlacerType <init> (Lcom/mojang/serialization/Codec;)V
+accessible method net/minecraft/block/SaplingBlock <init> (Lnet/minecraft/block/sapling/SaplingGenerator;Lnet/minecraft/block/AbstractBlock$Settings;)V
