@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "io.github.teddyxlandlee.sweet_potato.mixin",
+  "mixins": [
+    "VillagerEntityMixin",
+    "ComposterBlockMixin"
+  ],
+  "client": [
+    "TitleScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

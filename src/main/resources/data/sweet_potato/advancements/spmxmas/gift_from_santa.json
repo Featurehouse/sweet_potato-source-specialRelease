@@ -1,0 +1,29 @@
+{
+  "parent": "sweet_potato:spmxmas/plant_xmas_tree",
+  "display": {
+    "icon": {
+      "item": "sweet_potato:peel",
+      "nbt": "{Items:[{id:stone}]}"
+    },
+    "title": {
+      "translate": "advancement.spmxmas.gift_from_santa.title"
+    },
+    "description": {
+      "translate": "advancement.spmxmas.gift_from_santa.description"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "sweet_potato:unwrap_sock": {
+      "trigger": "sweet_potato:unwrap_gift"
+    }
+  },
+  "requirements": [
+    [
+      "sweet_potato:unwrap_sock"
+    ]
+  ]
+}
