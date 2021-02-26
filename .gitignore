@@ -34,4 +34,4 @@ updates.log
 libs/
 launcher.sh
 mh
-.gradle.7z
+.tmp.shelter/

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "sweet_potato",
-  "version": "Christmas Special Release 2020",
+  "version": "1.2.0",
 
   "name": "Sweet Potato Mod",
   "description": "Try new kinds of food, crops & magic in Sweet Potato Mod!",
@@ -10,12 +10,13 @@
   ],
   "contributors": [
     "teddyxlandlee",
-    "一颗水晶Rayawa",
-    "Peter Yang"
+    "\\u4e00\\u9897\\u6c34\\u6676Rayawa",
+    "Peterice"
   ],
   "contact": {
-    "homepage": "https://github.com/Rayawa/sweet_potato",
-    "sources": "https://github.com/teddyxlandlee/sweet_potato-source"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/sweet-potato",
+    "sources": "https://github.com/Featurehouse/sweet_potato-source",
+    "issues": "https://github.com/Featurehouse/sweet_potato-issueTracker/issues"
   },
 
   "license": "Apache-2.0",
@@ -24,25 +25,35 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.github.teddyxlandlee.sweet_potato.SPMMain",
-      "io.github.teddyxlandlee.sweet_potato.SPMXmas"
+      "io.featurehouse.spm.SPMMain"
     ],
     "client": [
-      "io.github.teddyxlandlee.sweet_potato.ClientInitializer"
+      "io.featurehouse.spm.client.SPMClient"
+    ],
+    "shurlin": [
+      "xyz.shurlin.linkage.sweet_potato.ShurlinSPMLinkage"
+    ],
+    "shurlin.client": [
+      "xyz.shurlin.linkage.sweet_potato.client.ShurlinSPMLinkageClient"
     ]
   },
   "mixins": [
     "sweet_potato.mixins.json"
   ],
 
-  "accessWidener": "sweet_potato.accesswidener",
-
   "depends": {
-    "fabricloader": ">=0.9.0+build.204",
-    "fabric": "*",
-    "minecraft": "1.16.x"
+    "fabricloader": ">=0.9.0",
+    "fabric": ">0.30.0",
+    "minecraft": ">=1.16.2 <1.17"
   },
   "suggests": {
-    "flamingo": "*"
+    "shurlin": ">=0.1.3"
+  },
+  "custom": {
+    "Pigeonia Linkage Standard": {
+      "url": "https://featurehouse.github.io/pigeonia-linkage-standard/v1.0.1/STANDARD.txt",
+      "version": "v1.0.1",
+      "strict": true
+    }
   }
 }

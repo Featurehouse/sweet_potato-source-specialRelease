@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.4-SNAPSHOT'
+	id 'fabric-loom' version '0.5-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -11,6 +11,13 @@ version = project.mod_version
 group = project.maven_group
 
 dependencies {
+	repositories {
+		mavenLocal()
+		maven {
+			name = 'COVID-Trump'
+			url = 'https://covid-trump.github.io/mvn/'
+		}
+	}
 	//to change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
@@ -19,12 +26,10 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+	modImplementation "xyz.shurlin:shurlin:${project.shurlin_version}"
+
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
-}
-
-minecraft {
-	accessWidener "src/main/resources/sweet_potato.accesswidener"
 }
 
 processResources {
@@ -63,6 +68,7 @@ jar {
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
+			artifactId = "$archives_base_name"
 			// add all the jars that should be included when publishing to maven
 			artifact(remapJar) {
 				builtBy remapJar
@@ -76,6 +82,6 @@ publishing {
 	// select the repositories you want to publish to
 	repositories {
 		// uncomment to publish to the local maven
-		// mavenLocal()
+		mavenLocal()
 	}
 }

@@ -1,12 +1,19 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "io.github.teddyxlandlee.sweet_potato.mixin",
+  "package": "io.featurehouse.spm.mixin",
   "mixins": [
-    "VillagerEntityMixin",
-    "ComposterBlockMixin"
+    "global.AdvancementTaskAccessor",
+    "global.ChickenEntityAccessor",
+    "global.LevelPropertiesMixin",
+    "global.MixinAdvancementTask",
+    "global.ParrotEntityAccessor",
+    "global.PigEntityAccessor",
+    "global.ServerPropertiesMixin"
   ],
   "client": [
+    "CreditsScreenMixin",
+    "MixinWorldEvent",
     "TitleScreenMixin"
   ],
   "injectors": {

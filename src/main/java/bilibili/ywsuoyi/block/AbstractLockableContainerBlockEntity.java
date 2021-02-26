@@ -5,8 +5,6 @@
 
 package bilibili.ywsuoyi.block;
 
-import io.github.teddyxlandlee.annotation.DeprecatedFrom;
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
@@ -15,8 +13,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.PacketByteBuf;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.collection.DefaultedList;
 
 import java.util.Iterator;
@@ -56,12 +52,12 @@ public abstract class AbstractLockableContainerBlockEntity extends LockableConta
         }
     }
 
-    @Deprecated @DeprecatedFrom(LootableContainerBlockEntity.class)
+    /** @deprecated from {@link LootableContainerBlockEntity} */ @Deprecated
     public DefaultedList<ItemStack> getInvStackList() {
         return this.inventory;
     }
 
-    @Deprecated @DeprecatedFrom(LootableContainerBlockEntity.class)
+    /** @deprecated from {@link LootableContainerBlockEntity} */ @Deprecated
     public void setInvStackList(DefaultedList<ItemStack> list) {
         this.inventory = list;
     }
