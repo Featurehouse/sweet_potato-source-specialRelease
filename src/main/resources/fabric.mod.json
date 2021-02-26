@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "sweet_potato",
-  "version": "1.2.0",
+  "version": "1.3.0-aprilfools",
 
   "name": "Sweet Potato Mod",
   "description": "Try new kinds of food, crops & magic in Sweet Potato Mod!",
@@ -25,10 +25,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.featurehouse.spm.SPMMain"
+      "io.featurehouse.spm.SPMMain",
+      "io.featurehouse.spm.SPMFools"
     ],
     "client": [
-      "io.featurehouse.spm.client.SPMClient"
+      "io.featurehouse.spm.client.SPMClient",
+      "io.featurehouse.spm.client.SPMFoolsClient"
     ],
     "shurlin": [
       "xyz.shurlin.linkage.sweet_potato.ShurlinSPMLinkage"
