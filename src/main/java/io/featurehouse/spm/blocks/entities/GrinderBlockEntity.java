@@ -19,13 +19,21 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Tickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.explosion.Explosion;
+import net.minecraft.world.explosion.ExplosionBehavior;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Random;
+import java.util.function.DoubleSupplier;
 
 /* (not javadoc)
  * <h2>Why canceling implementing ExtendedScreenHandlerFactory?</h2>
@@ -231,6 +239,29 @@ public class GrinderBlockEntity extends AbstractLockableContainerBlockEntity imp
         }
 
         if (shallMarkDirty) markDirty();
+
+        if (this.ingredientData >= 50.0D) {
+            if (!world.isClient) {
+                world.createExplosion(null, null, new ExplosionBehavior() {
+                            @Override
+                            public boolean canDestroyBlock(Explosion explosion, BlockView world, BlockPos pos, BlockState state, float power) {
+                                return false;
+                            }
+                        },
+                        pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
+                        2.0F, false, Explosion.DestructionType.NONE
+                );
+            } else {
+                Random random = world.getRandom();
+                DoubleSupplier sup = () -> random.nextDouble() * (random.nextBoolean() ? 1.5 : -1.5) + 0.5D;
+                world.addParticle(ParticleTypes.SMOKE,
+                        sup.getAsDouble() + pos.getX(),
+                        sup.getAsDouble() + pos.getY(),
+                        sup.getAsDouble() + pos.getZ(),
+                        0.0D, 0.0D, 0.0D
+                );
+            }
+        }
     }
 
     private boolean shallCooldown() {
