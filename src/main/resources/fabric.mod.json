@@ -25,12 +25,12 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "io.featurehouse.spm.SPMMain",
-      "io.featurehouse.spm.SPMFools"
+      "org.featurehouse.spm.SPMMain",
+      "org.featurehouse.spm.SPMFools"
     ],
     "client": [
-      "io.featurehouse.spm.client.SPMClient",
-      "io.featurehouse.spm.client.SPMFoolsClient"
+      "org.featurehouse.spm.client.SPMClient",
+      "org.featurehouse.spm.client.SPMFoolsClient"
     ],
     "shurlin": [
       "xyz.shurlin.linkage.sweet_potato.ShurlinSPMLinkage"
