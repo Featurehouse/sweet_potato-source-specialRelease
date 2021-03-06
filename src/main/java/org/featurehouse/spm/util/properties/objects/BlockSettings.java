@@ -28,6 +28,7 @@ public final class BlockSettings {
 
     public static final FabricBlockSettings GRASS_LIKE;
     public static final FabricBlockSettings GRASS;
+    public static final FabricBlockSettings MICROSTONE = FabricBlockSettings.of(Material.SUPPORTED).hardness(0.5F).breakByTool(FabricToolTags.PICKAXES, 0);
 
     private BlockSettings() {}
 

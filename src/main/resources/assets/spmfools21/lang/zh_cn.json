@@ -2,5 +2,7 @@
   "death.attack.spmfools21.steve_spawn": "%1$s被注入了史蒂夫的灵魂",
   "death.attack.spmfools21.steve_spawn.player": "%1$s被%2$s注入了史蒂夫的灵魂",
 
-  "item.spmfools21.steve_spawn_egg": "史蒂夫刷怪蛋"
+  "item.spmfools21.steve_spawn_egg": "史蒂夫刷怪蛋",
+
+  "message.spmfools21.java.lang.StackOverflowError": "位于 %s 的栈溢出"
 }

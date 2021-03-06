@@ -2,14 +2,30 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "sweet_potato:grinder"
+      "spmfools21:deep_dark_fantasy"
     ]
   },
   "criteria": {
     "_": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "sweet_potato:grinder"
+        "recipe": "spmfools21:deep_dark_fantasy"
+      }
+    },
+    "cf_in": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "item": "spmfools21:curseforge_ingot"
+        }]
+      }
+    },
+    "ms": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "item": "spmfools21:microstone"
+        }]
       }
     },
     "blackstones": {
@@ -19,34 +35,9 @@
           "tag": "sweet_potato:blackstones"
         }]
       }
-    },
-    "slab": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [{
-          "item": "spmfools21:microstone"
-        }]
-      }
-    },
-    "iron_in | redstone": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [{
-          "item": "minecraft:iron_ingot"
-        }]
-      }
-    },
-    "cf": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [{
-          "item": "spmfools21:curseforge_ingot"
-        }]
-      }
     }
   },
   "requirements": [[
-    "_", "blackstones", "slab",
-    "iron_in | redstone", "cf"
+    "_", "cf_in", "ms", "blackstones"
   ]]
 }

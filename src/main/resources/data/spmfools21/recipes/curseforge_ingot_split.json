@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [{
+    "item": "spmfools21:curseforge_block"
+  }],
+  "result": {
+    "item": "spmfools21:curseforge_ingot",
+    "count": 4
+  }
+}

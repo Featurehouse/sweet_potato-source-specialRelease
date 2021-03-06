@@ -2,5 +2,23 @@
   "death.attack.spmfools21.steve_spawn": "The soul of %1$s is fused into Steve",
   "death.attack.spmfools21.steve_spawn.player": "The soul of %1$s is fused into Steve by %2$s",
 
-  "item.spmfools21.steve_spawn_egg": "Steve Spawn Egg"
+  "item.spmfools21.steve_spawn_egg": "Steve Spawn Egg",
+
+  "message.spmfools21.java.lang.StackOverflowError": "Stack Overflows at %s",
+
+  "block.spmfools21.curseforge_block": "Curse Forge Block",
+  "block.spmfools21.curseforge_ore": "Curse Forge Ore",
+  "block.spmfools21.cracked_rock": "Cracked Rock",
+  "block.spmfools21.microstone": "Microstone",
+  "block.spmfools21.deep_dark_fantasy": "Deep Dark Fantasy",
+  "item.spmfools21.curseforge_ingot": "Curse Forge Ingot",
+  "item.spmfools21.horse_bucket": "Horse Bucket",
+  "item.spmfools21.fabric": "Fabric™: The Forge Killer",
+
+  "container.spmfools21.deep_dark_fantasy": "Deep Dark Fantasy",
+
+  "subtitles.spmfools21.server_crashing": "Server Crashing...",
+  "subtitles.spmfools21.bucket_hungry": "Bucket got hungry",
+
+  "death.spmfools21.parrot.pigeon": "Coo coo coo! A pigeon at %s was abused to death"
 }

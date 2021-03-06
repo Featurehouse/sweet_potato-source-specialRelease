@@ -1,14 +1,11 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "III",
+    "###",
     "#_#",
     "BBB"
   ],
   "key": {
-    "I": {
-      "item": "minecraft:iron_ingot"
-    },
     "#": {
       "item": "spmfools21:curseforge_ingot"
     },

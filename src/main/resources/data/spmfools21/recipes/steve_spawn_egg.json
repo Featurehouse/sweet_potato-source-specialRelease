@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "sweet_potato:enchanted_potato" },
+    { "item": "sweet_potato:enchanted_potato" },
+    { "item": "sweet_potato:enchanted_potato" },
+    { "item": "sweet_potato:enchanted_potato" },
+    { "item": "sweet_potato:enchanted_carrot" },
+    { "item": "sweet_potato:enchanted_carrot" },
+    { "item": "sweet_potato:enchanted_carrot" },
+    { "item": "sweet_potato:enchanted_carrot" },
+    { "item": "spmfools21:curseforge_block"   }
+  ],
+  "result": {
+    "item": "spmfools21:steve_spawn_egg"
+  }
+}

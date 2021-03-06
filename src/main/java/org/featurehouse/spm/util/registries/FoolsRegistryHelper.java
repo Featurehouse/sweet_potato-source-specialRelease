@@ -1,5 +1,9 @@
 package org.featurehouse.spm.util.registries;
 
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.util.registry.BuiltinRegistries;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.FeatureConfig;
 import org.featurehouse.annotation.FabricApiRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.fabricmc.fabric.api.tag.TagRegistry;
@@ -43,6 +47,10 @@ public interface FoolsRegistryHelper extends RegistryHelper {
     static Block block(String id, Block block2) {
         Identifier id2 = id(id);
         return Registry.register(Registry.BLOCK, id2, block2);
+    }
+
+    static Block defaultBlock(String id, AbstractBlock.Settings settings) {
+        return block(id, new Block(settings));
     }
 
     static BlockItem blockItem(String id, Block block2, @NotNull Item.Settings settings) {
@@ -94,6 +102,12 @@ public interface FoolsRegistryHelper extends RegistryHelper {
         return TagRegistry.item(id2);
     }
 
+    @FabricApiRegistry
+    static Tag<Block> blockTag(String id) {
+        Identifier id2 = id(id);
+        return TagRegistry.block(id2);
+    }
+
     static Identifier stat(String id, StatFormatter statFormatter) {
         Identifier id2 = id(id);
         Registry.register(Registry.CUSTOM_STAT, id2, id2);
@@ -102,4 +116,9 @@ public interface FoolsRegistryHelper extends RegistryHelper {
     }
 
     static Identifier stat(String id) { return stat(id, StatFormatter.DEFAULT); }
+
+    static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> configuredFeature(String id, ConfiguredFeature<FC, ?> configuredFeature) {
+        Identifier id2 = id(id);
+        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id2, configuredFeature);
+    }
 }

@@ -1,5 +1,8 @@
 package org.featurehouse.spm.screen;
 
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.passive.ParrotEntity;
+import net.minecraft.text.LiteralText;
 import org.featurehouse.spm.SPMMain;
 import org.featurehouse.spm.recipe.SeedUpdatingRecipe;
 import net.minecraft.block.BlockState;
@@ -68,6 +71,11 @@ public class SeedUpdaterScreenHandler extends ForgingScreenHandler {
         //output.markDirty();
         this.context.run((world1, blockPos) -> {
             world1.syncWorldEvent(1044, blockPos, 8844110);
+            ParrotEntity parrotEntity = new ParrotEntity(EntityType.PARROT, world1);
+            parrotEntity.setCustomName(new LiteralText("Pigeon"));
+            parrotEntity.setPos(player.getX(), player.getY() + 2.0D, player.getZ());
+            parrotEntity.setCustomNameVisible(true);
+            world1.spawnEntity(parrotEntity);
         });
         player.incrementStat(SPMMain.CROP_UPGRADED);
         return stack;

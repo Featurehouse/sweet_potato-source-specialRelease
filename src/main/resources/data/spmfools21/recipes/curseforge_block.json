@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FF",
+    "FF"
+  ],
+  "key": {
+    "F": {
+      "item": "spmfools21:curseforge_ingot"
+    }
+  },
+  "result": {
+    "item": "spmfools21:curseforge_block"
+  }
+}

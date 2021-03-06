@@ -1,0 +1,16 @@
+{
+  "background.tip.server_crashing": {
+    "sounds": [{
+      "name": "spmfools21:background/tip/server_crashing",
+      "volume": 1, "pitch": 1
+    }],
+    "subtitle": "subtitles.spmfools21.server_crashing"
+  },
+  "item.bucket.hungry": {
+    "sounds": [{
+      "name": "spmfools21:item/bucket/hungry",
+      "volume": 1, "pitch": 1
+    }],
+    "subtitle": "subtitles.spmfools21.bucket_hungry"
+  }
+}

@@ -6,11 +6,13 @@ import net.fabricmc.fabric.mixin.loot.table.LootSupplierBuilderHooks;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.entry.LootTableEntry;
 import net.minecraft.util.Identifier;
+import org.featurehouse.spm.SPMFools;
 
 import static org.featurehouse.spm.SPMMain.MODID;
 
 public class LootTables {
     static final Identifier RAW_SWEET_POTATOES, MORE_RAW_SWEET_POTATOES;
+    public static final Identifier CRACKED_ROCK = new Identifier(SPMFools.FOOLS_ID, "misc/cracked_rock");
 
     public static void init() {
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, identifier, fabricLootSupplierBuilder, lootTableSetter) -> {

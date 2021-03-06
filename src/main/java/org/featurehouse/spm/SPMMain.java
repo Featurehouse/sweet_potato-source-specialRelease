@@ -11,7 +11,7 @@ import org.featurehouse.spm.items.*;
 import org.featurehouse.spm.linkage.SPMLinkage;
 import org.featurehouse.spm.loot.LootTables;
 import org.featurehouse.spm.mixin.global.ChickenEntityAccessor;
-import org.featurehouse.spm.mixin.global.ParrotEntityAccessor;
+import org.featurehouse.spm.mixin.global.ParrotEntityMixin;
 import org.featurehouse.spm.mixin.global.PigEntityAccessor;
 import org.featurehouse.spm.recipe.SeedUpdatingRecipe;
 import org.featurehouse.spm.resource.SPMDataPackFormats;
@@ -194,7 +194,7 @@ public class SPMMain implements ModInitializer {
 		//Util.registerFurnaceFuel(null, Items.AIR, -1);
 		PigEntityAccessor.setBreedingIngredient(Ingredient.fromTag(PIG_BREEDING_INGREDIENTS));
 		ChickenEntityAccessor.setBreedingIngredient(Ingredient.fromTag(CHICKEN_BREEDING_INGREDIENTS));
-		Set<Item> parrotTamingIngredients = ParrotEntityAccessor.getTamingIngredients();
+		Set<Item> parrotTamingIngredients = ParrotEntityMixin.getTamingIngredients();
 		parrotTamingIngredients.add(ENCHANTED_BEETROOT_SEEDS); parrotTamingIngredients.add(ENCHANTED_WHEAT_SEEDS);
 	}
 

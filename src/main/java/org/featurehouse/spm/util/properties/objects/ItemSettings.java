@@ -12,6 +12,8 @@ public final class ItemSettings {
     public static final Settings UNCDEC;   // Uncommon Decorations
     public static final Settings MISC;
     public static final Settings UNC_MISC;
+    public static final Settings BUILDING;
+    public static final Settings MISC_ONE;
     /** Does not appear in creative mode inventory, but still exists. */
     public static final Settings EASTER_EGG;
 
@@ -24,6 +26,8 @@ public final class ItemSettings {
         UNCDEC = new FabricItemSettings().group(ItemGroup.DECORATIONS).rarity(Rarity.UNCOMMON);
         MISC = new FabricItemSettings().group(ItemGroup.MISC);
         UNC_MISC = new FabricItemSettings().group(ItemGroup.MISC).rarity(Rarity.UNCOMMON);
+        BUILDING = new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS);
+        MISC_ONE = new FabricItemSettings().group(ItemGroup.MISC).maxCount(1);
         EASTER_EGG = new FabricItemSettings();
     }
 }

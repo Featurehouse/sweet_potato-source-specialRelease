@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "spmfools21:curseforge_ore"
+  },
+  "result": "spmfools21:curseforge_ingot",
+  "experience": 0.7,
+  "cookingtime": 100
+}

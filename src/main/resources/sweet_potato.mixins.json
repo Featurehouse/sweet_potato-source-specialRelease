@@ -7,12 +7,13 @@
     "global.ChickenEntityAccessor",
     "global.LevelPropertiesMixin",
     "global.MixinAdvancementTask",
-    "global.ParrotEntityAccessor",
+    "global.ParrotEntityMixin",
     "global.PigEntityAccessor",
     "global.ServerPropertiesMixin"
   ],
   "client": [
     "CreditsScreenMixin",
+    "ClientWorldAccessor",
     "MixinWorldEvent",
     "TitleScreenMixin"
   ],

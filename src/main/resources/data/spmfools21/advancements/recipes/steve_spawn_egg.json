@@ -2,51 +2,42 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "sweet_potato:grinder"
+      "spmfools21:steve_spawn_egg"
     ]
   },
   "criteria": {
     "_": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "sweet_potato:grinder"
+        "recipe": "spmfools21:steve_spawn_egg"
       }
     },
-    "blackstones": {
+    "cf_b": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [{
-          "tag": "sweet_potato:blackstones"
+          "item": "spmfools21:curseforge_block"
         }]
       }
     },
-    "slab": {
+    "ep": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [{
-          "item": "spmfools21:microstone"
+          "item": "sweet_potato:enchanted_potato"
         }]
       }
     },
-    "iron_in | redstone": {
+    "ec": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [{
-          "item": "minecraft:iron_ingot"
-        }]
-      }
-    },
-    "cf": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [{
-          "item": "spmfools21:curseforge_ingot"
+          "item": "sweet_potato:enchanted_carrot"
         }]
       }
     }
   },
   "requirements": [[
-    "_", "blackstones", "slab",
-    "iron_in | redstone", "cf"
+    "_", "cf_b", "ep", "ec"
   ]]
 }

@@ -1,6 +1,11 @@
 package org.featurehouse.spm.blocks.entities;
 
 import bilibili.ywsuoyi.block.AbstractLockableContainerBlockEntity;
+import net.minecraft.network.MessageType;
+import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.LiteralText;
+import net.minecraft.util.math.Vec3d;
 import org.featurehouse.annotation.HardCoded;
 import org.featurehouse.annotation.NonMinecraftNorFabric;
 import org.featurehouse.spm.SPMMain;
@@ -242,15 +247,24 @@ public class GrinderBlockEntity extends AbstractLockableContainerBlockEntity imp
 
         if (this.ingredientData >= 50.0D) {
             if (!world.isClient) {
+                Vec3d vec3d = Vec3d.ofCenter(pos);
                 world.createExplosion(null, null, new ExplosionBehavior() {
                             @Override
                             public boolean canDestroyBlock(Explosion explosion, BlockView world, BlockPos pos, BlockState state, float power) {
                                 return false;
                             }
                         },
-                        pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,
+                        vec3d.x, vec3d.y, vec3d.z,
                         2.0F, false, Explosion.DestructionType.NONE
                 );
+                ((ServerWorld) world).getServer().getPlayerManager().sendToAround(
+                        null, vec3d.x, vec3d.y, vec3d.z, 256.0F, world.getRegistryKey(),
+                        new GameMessageS2CPacket(new LiteralText("Exception in thread \"Server Thread\" java.lang.StackOverflowError: ")
+                                .append(new TranslatableText(
+                                        "message.spmfools21.java.lang.StackOverflowError", pos))
+                                , MessageType.SYSTEM, net.minecraft.util.Util.NIL_UUID)
+                );
+                this.ingredientData = 0.0D;
             } else {
                 Random random = world.getRandom();
                 DoubleSupplier sup = () -> random.nextDouble() * (random.nextBoolean() ? 1.5 : -1.5) + 0.5D;

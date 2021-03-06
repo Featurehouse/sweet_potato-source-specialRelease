@@ -61,6 +61,7 @@ public class EnchantedSweetPotatoItem extends EnchantedItem implements WithStatu
                     statusEffectInstance.getEffectType().applyInstantEffect(user, user, user, statusEffectInstance.getAmplifier(), 1.0D);
                 }
             }));
+            user.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 100, 4));
         }
 
         return super.finishUsing(stack, world, user);

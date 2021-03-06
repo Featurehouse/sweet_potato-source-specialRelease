@@ -1,0 +1,55 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "spmfools21:curseforge_block",
+      "spmfools21:curseforge_ingot_split"
+    ]
+  },
+  "criteria": {
+    "_1": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "spmfools21:curseforge_block"
+      }
+    },
+    "_2": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "spmfools21:curseforge_ingot_blast"
+      }
+    },
+    "_3": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "spmfools21:curseforge_ingot_furnace"
+      }
+    },
+    "_4": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "spmfools21:curseforge_ingot_split"
+      }
+    },
+    "ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "item": "spmfools21:curseforge_ingot"
+        }]
+      }
+    },
+    "block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "item": "spmfools21:curseforge_block"
+        }]
+      }
+    }
+  },
+  "requirements": [[
+    "_1", "_2", "_3", "_4",
+    "ingot", "block"
+  ]]
+}
