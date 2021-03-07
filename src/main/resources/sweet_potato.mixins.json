@@ -3,6 +3,7 @@
   "minVersion": "0.8",
   "package": "org.featurehouse.spm.mixin",
   "mixins": [
+    "global.ParrotEntityAccessor",
     "global.AdvancementTaskAccessor",
     "global.ChickenEntityAccessor",
     "global.LevelPropertiesMixin",
@@ -12,8 +13,8 @@
     "global.ServerPropertiesMixin"
   ],
   "client": [
-    "CreditsScreenMixin",
     "ClientWorldAccessor",
+    "CreditsScreenMixin",
     "MixinWorldEvent",
     "TitleScreenMixin"
   ],

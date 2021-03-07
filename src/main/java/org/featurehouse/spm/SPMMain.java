@@ -1,28 +1,5 @@
 package org.featurehouse.spm;
 
-import org.featurehouse.spm.blocks.GrinderBlock;
-import org.featurehouse.spm.blocks.MagicCubeBlock;
-import org.featurehouse.spm.blocks.SeedUpdaterBlock;
-import org.featurehouse.spm.blocks.SweetPotatoesCropBlock;
-import org.featurehouse.spm.blocks.entities.GrinderBlockEntity;
-import org.featurehouse.spm.blocks.entities.MagicCubeBlockEntity;
-import org.featurehouse.spm.blocks.saplings_seeds.*;
-import org.featurehouse.spm.items.*;
-import org.featurehouse.spm.linkage.SPMLinkage;
-import org.featurehouse.spm.loot.LootTables;
-import org.featurehouse.spm.mixin.global.ChickenEntityAccessor;
-import org.featurehouse.spm.mixin.global.ParrotEntityMixin;
-import org.featurehouse.spm.mixin.global.PigEntityAccessor;
-import org.featurehouse.spm.recipe.SeedUpdatingRecipe;
-import org.featurehouse.spm.resource.SPMDataPackFormats;
-import org.featurehouse.spm.screen.GrinderScreenHandler;
-import org.featurehouse.spm.screen.MagicCubeScreenHandler;
-import org.featurehouse.spm.screen.SeedUpdaterScreenHandler;
-import org.featurehouse.spm.structures.tree.gen.*;
-import org.featurehouse.spm.util.properties.objects.BlockSettings;
-import org.featurehouse.spm.util.properties.objects.ItemSettings;
-import org.featurehouse.spm.util.properties.objects.Materials;
-import org.featurehouse.spm.util.registries.ComposterHelper;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Block;
@@ -36,6 +13,29 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+import org.featurehouse.spm.blocks.GrinderBlock;
+import org.featurehouse.spm.blocks.MagicCubeBlock;
+import org.featurehouse.spm.blocks.SeedUpdaterBlock;
+import org.featurehouse.spm.blocks.SweetPotatoesCropBlock;
+import org.featurehouse.spm.blocks.entities.GrinderBlockEntity;
+import org.featurehouse.spm.blocks.entities.MagicCubeBlockEntity;
+import org.featurehouse.spm.blocks.saplings_seeds.*;
+import org.featurehouse.spm.items.*;
+import org.featurehouse.spm.linkage.SPMLinkage;
+import org.featurehouse.spm.loot.LootTables;
+import org.featurehouse.spm.mixin.global.ChickenEntityAccessor;
+import org.featurehouse.spm.mixin.global.ParrotEntityAccessor;
+import org.featurehouse.spm.mixin.global.PigEntityAccessor;
+import org.featurehouse.spm.recipe.SeedUpdatingRecipe;
+import org.featurehouse.spm.resource.SPMDataPackFormats;
+import org.featurehouse.spm.screen.GrinderScreenHandler;
+import org.featurehouse.spm.screen.MagicCubeScreenHandler;
+import org.featurehouse.spm.screen.SeedUpdaterScreenHandler;
+import org.featurehouse.spm.structures.tree.gen.*;
+import org.featurehouse.spm.util.properties.objects.BlockSettings;
+import org.featurehouse.spm.util.properties.objects.ItemSettings;
+import org.featurehouse.spm.util.properties.objects.Materials;
+import org.featurehouse.spm.util.registries.ComposterHelper;
 
 import java.util.Set;
 
@@ -194,7 +194,7 @@ public class SPMMain implements ModInitializer {
 		//Util.registerFurnaceFuel(null, Items.AIR, -1);
 		PigEntityAccessor.setBreedingIngredient(Ingredient.fromTag(PIG_BREEDING_INGREDIENTS));
 		ChickenEntityAccessor.setBreedingIngredient(Ingredient.fromTag(CHICKEN_BREEDING_INGREDIENTS));
-		Set<Item> parrotTamingIngredients = ParrotEntityMixin.getTamingIngredients();
+		Set<Item> parrotTamingIngredients = ParrotEntityAccessor.getTamingIngredients();
 		parrotTamingIngredients.add(ENCHANTED_BEETROOT_SEEDS); parrotTamingIngredients.add(ENCHANTED_WHEAT_SEEDS);
 	}
 

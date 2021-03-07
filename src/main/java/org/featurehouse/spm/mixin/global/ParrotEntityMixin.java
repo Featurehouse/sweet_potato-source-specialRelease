@@ -14,7 +14,6 @@ import net.minecraft.util.Util;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -44,8 +43,8 @@ public abstract class ParrotEntityMixin extends TameableShoulderEntity {
         root.put("spmfools21:info", compoundTag);
     }
 
-    @Accessor("TAMING_INGREDIENTS")
-    public static Set<Item> getTamingIngredients() {
+    @Deprecated //@Accessor("TAMING_INGREDIENTS")
+    static Set<Item> getTamingIngredients() {
         throw new AssertionError("Mixin");
     }
 
