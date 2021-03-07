@@ -23,6 +23,7 @@ import org.featurehouse.spm.blocks.DeepDarkFantasyBlock;
 import org.featurehouse.spm.blocks.MicrostoneBlock;
 import org.featurehouse.spm.blocks.entities.DeepDarkFantasyBlockEntity;
 import org.featurehouse.spm.item.HorseBucketItem;
+import org.featurehouse.spm.items.MicrohammerItem;
 import org.featurehouse.spm.items.SteveSpawnEggItem;
 import org.featurehouse.spm.items.interactions.ItemInteractions;
 import org.featurehouse.spm.util.properties.objects.BlockSettings;
@@ -46,6 +47,7 @@ public class SPMFools implements ModInitializer {
     public static final Item CURSEFORGE_BLOCK_ITEM;
     public static final Item CURSEFORGE_ORE_ITEM;
     public static final Item HORSE_BUCKET;
+    public static final Item MICROHAMMER;
     public static final Item MICROSTONE_ITEM;
     public static final Item DEEP_DARK_FANTASY_ITEM;
 
@@ -57,7 +59,7 @@ public class SPMFools implements ModInitializer {
     public static final SoundEvent BUCKET_HUNGRY;
 
     @Diff16and17({"data-pack-tags", "resource-pack-block-states", "resource-pack-textures"})
-    public static final Tag<Block> MICROHAMMER_BREAKABLE;
+    public static final Tag<Block> MICROHAMMER_BREAKABLE = blockTag("microhammer_breakable");
 
     @Diff16and17
     public static final ConfiguredFeature<?, ?> CURSEFORGE_FEATURE;
@@ -82,6 +84,7 @@ public class SPMFools implements ModInitializer {
         CURSEFORGE_BLOCK_ITEM = blockItem("curseforge_block", CURSEFORGE_BLOCK, ItemSettings.BUILDING);
         CURSEFORGE_ORE_ITEM = blockItem("curseforge_ore", CURSEFORGE_ORE, ItemSettings.BUILDING);
         HORSE_BUCKET = item("horse_bucket", HorseBucketItem.INSTANCE);
+        MICROHAMMER = item("microhammer", new MicrohammerItem(ItemSettings.TOOL_ONE));
         MICROSTONE_ITEM = blockItem("microstone", MICROSTONE, ItemSettings.MISC);
         DEEP_DARK_FANTASY_ITEM = blockItem("deep_dark_fantasy", DEEP_DARK_FANTASY, ItemSettings.DECORATIONS);
         FABRIC = defaultItem("fabric", ItemSettings.EASTER_EGG);
@@ -90,8 +93,6 @@ public class SPMFools implements ModInitializer {
 
         SERVER_CRASHING = sound("background.tip.server_crashing");
         BUCKET_HUNGRY = sound("item.bucket.hungry");
-
-        MICROHAMMER_BREAKABLE = blockTag("microhammer_breakable");
 
         CURSEFORGE_FEATURE = configuredFeature("ore_curseforge", Feature.ORE.configure(
                 new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, CURSEFORGE_ORE.getDefaultState(), 8))
