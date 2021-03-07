@@ -43,11 +43,6 @@ public abstract class ParrotEntityMixin extends TameableShoulderEntity {
         root.put("spmfools21:info", compoundTag);
     }
 
-    @Deprecated //@Accessor("TAMING_INGREDIENTS")
-    static Set<Item> getTamingIngredients() {
-        throw new AssertionError("Mixin");
-    }
-
     @Inject(at = @At("RETURN"), method = "damage")
     private void onDamage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> cir) {
         if (cir.getReturnValueZ() && this.spmfools21_isPigeon && !this.world.isClient) {
