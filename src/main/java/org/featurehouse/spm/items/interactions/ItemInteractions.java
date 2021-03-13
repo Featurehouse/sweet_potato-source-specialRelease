@@ -43,7 +43,7 @@ public class ItemInteractions {
             return ActionResult.PASS;
         });
         AttackBlockCallback.EVENT.register((playerEntity, world, hand, blockPos, direction) -> {
-            if (world.isClient) return ActionResult.SUCCESS;
+            if (world.isClient) return ActionResult.PASS;
             if (playerEntity.getStackInHand(hand).getItem() instanceof MicrohammerItem) {
                 BlockState state = world.getBlockState(blockPos);
                 if (state.isIn(SPMFools.MICROHAMMER_BREAKABLE)) {
@@ -73,6 +73,7 @@ public class ItemInteractions {
                     entity.removeAllPassengers();
                     CompoundTag tag = new CompoundTag();
                     entity.saveSelfToTag(tag);
+                    entity.remove();
                     ItemStack horseBucket = new ItemStack(SPMFools.HORSE_BUCKET);
                     horseBucket.getOrCreateTag().put("EntityTag", tag);
                     if (!playerEntity.inventory.insertStack(horseBucket))

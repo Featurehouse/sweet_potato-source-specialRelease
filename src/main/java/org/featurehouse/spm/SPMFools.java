@@ -1,8 +1,6 @@
 package org.featurehouse.spm;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -10,13 +8,6 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.tag.Tag;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
 import org.featurehouse.annotation.Diff16and17;
 import org.featurehouse.spm.blocks.CrackedRockBlock;
 import org.featurehouse.spm.blocks.DeepDarkFantasyBlock;
@@ -61,15 +52,10 @@ public class SPMFools implements ModInitializer {
     @Diff16and17({"data-pack-tags", "resource-pack-block-states", "resource-pack-textures"})
     public static final Tag<Block> MICROHAMMER_BREAKABLE = blockTag("microhammer_breakable");
 
-    @Diff16and17
-    public static final ConfiguredFeature<?, ?> CURSEFORGE_FEATURE;
-
     @Override
     public void onInitialize() {
         ItemInteractions.init();
-
-        RegistryKey<ConfiguredFeature<?, ?>> curseforgeFeature = RegistryKey.of(Registry.CONFIGURED_FEATURE_WORLDGEN, new Identifier(FOOLS_ID, "org_curseforge"));
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_ORES, curseforgeFeature);
+        
     }
 
     static {
@@ -93,9 +79,5 @@ public class SPMFools implements ModInitializer {
 
         SERVER_CRASHING = sound("background.tip.server_crashing");
         BUCKET_HUNGRY = sound("item.bucket.hungry");
-
-        CURSEFORGE_FEATURE = configuredFeature("ore_curseforge", Feature.ORE.configure(
-                new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, CURSEFORGE_ORE.getDefaultState(), 8))
-                .rangeOf(16)).spreadHorizontally().repeat(8);
     }
 }
