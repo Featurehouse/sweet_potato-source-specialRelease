@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "spmfools21:item/nullpointerexception_18"
+    "layer0": "spmfools21:item/nullpointerexeption_18"
   }
 }

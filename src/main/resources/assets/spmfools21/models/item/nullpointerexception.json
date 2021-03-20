@@ -1,7 +1,7 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "spmfools21:item/nullpointerexception_16"
+        "layer0": "spmfools21:item/nullpointerexeption_16"
     },
     "overrides": [
         { "predicate": { "angle": 0.000000 }, "model": "spmfools21:item/nullpointerexception" },

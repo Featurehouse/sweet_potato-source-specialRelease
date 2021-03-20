@@ -20,7 +20,8 @@ class NullPointerExceptionItem(settings: Settings) : Item(settings) {
         private val CLIENT_CRASH_ACCEPT = Identifier(SPMFools.FOOLS_ID, "client_crash_accept")
         fun getClientCrashAccept() = CLIENT_CRASH_ACCEPT
 
-        private val K_STACK = SPMFools.KOTLIN.defaultStack
+        private val K_STACK
+            get() = SPMFools.KOTLIN.defaultStack
         val criterion = ManuallyTriggeredCriterion(Identifier(SPMFools.FOOLS_ID, "consume_kotlin"))
     }
 

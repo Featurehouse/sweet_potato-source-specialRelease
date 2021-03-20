@@ -10,5 +10,5 @@ object MicroToolMaterial : ToolMaterial {
     override fun getAttackDamage() = 5.0F
     override fun getMiningLevel() = 0       // fw
     override fun getEnchantability() = 0    // fw
-    override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(SPMFools.CURSEFORGE_INGOT);
+    override fun getRepairIngredient(): Ingredient = Ingredient.ofItems(SPMFools.CURSEFORGE_INGOT)
 }
