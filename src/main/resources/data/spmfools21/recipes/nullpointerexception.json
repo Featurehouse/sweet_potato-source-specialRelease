@@ -1,0 +1,12 @@
+{
+  "type": "sweet_potato:seed_updating",
+  "base": {
+    "item": "minecraft:compass"
+  },
+  "addition": {
+    "item": "spmfools21:microstone"
+  },
+  "result": {
+    "item": "spmfools21:nullpointerexception"
+  }
+}

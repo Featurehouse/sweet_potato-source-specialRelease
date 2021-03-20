@@ -15,6 +15,7 @@ public final class ItemSettings {
     public static final Settings BUILDING;
     public static final Settings MISC_ONE;
     public static final Settings TOOL_ONE;
+    public static final Settings TOOL_ONE_UNC;
     /** Does not appear in creative mode inventory, but still exists. */
     public static final Settings EASTER_EGG;
 
@@ -30,6 +31,7 @@ public final class ItemSettings {
         BUILDING = new FabricItemSettings().group(ItemGroup.BUILDING_BLOCKS);
         MISC_ONE = new FabricItemSettings().group(ItemGroup.MISC).maxCount(1);
         TOOL_ONE = new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1);
+        TOOL_ONE_UNC = new FabricItemSettings().group(ItemGroup.TOOLS).maxCount(1).rarity(Rarity.UNCOMMON);
         EASTER_EGG = new FabricItemSettings();
     }
 }

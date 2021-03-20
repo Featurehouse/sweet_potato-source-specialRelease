@@ -8,7 +8,7 @@
   },
   "item.bucket.hungry": {
     "sounds": [{
-      "name": "spmfools21:item/bucket/hungry",
+      "name": "minecraft:random/burp",
       "volume": 1, "pitch": 1
     }],
     "subtitle": "subtitles.spmfools21.bucket_hungry"

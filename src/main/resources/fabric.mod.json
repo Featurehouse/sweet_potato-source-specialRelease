@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "sweet_potato",
-  "version": "1.3.0-aprilfools",
+  "version": "1.3.0-alpha.5.3.14",
 
   "name": "Sweet Potato Mod",
   "description": "Try new kinds of food, crops & magic in Sweet Potato Mod!",
@@ -46,7 +46,8 @@
   "depends": {
     "fabricloader": ">=0.9.0",
     "fabric": ">0.30.0",
-    "minecraft": ">=1.16.2 <1.17"
+    "minecraft": ">=1.16.2 <1.17",
+    "fabric-language-kotlin": "*"
   },
   "suggests": {
     "shurlin": ">=0.1.3"

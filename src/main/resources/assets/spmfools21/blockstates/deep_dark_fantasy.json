@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "grinding=true": {
+      "model": "spmfools21:block/deep_dark_fantasy"
+    },
+    "grinding=false": {
+      "model": "spmfools21:block/still_fantasy"
+    }
+  }
+}

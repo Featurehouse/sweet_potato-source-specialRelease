@@ -1,0 +1,20 @@
+{
+  "multipart": [
+    {
+      "when": {"count": "1"},
+      "apply": {"model": "spmfools21:block/microstone_1"}
+    },
+    {
+      "when": {"count": "2"},
+      "apply": {"model": "spmfools21:block/microstone_2"}
+    },
+    {
+      "when": {"count": "3"},
+      "apply": {"model": "spmfools21:block/microstone_3"}
+    },
+    {
+      "when": {"count": "4"},
+      "apply": {"model": "spmfools21:block/microstone_4"}
+    }
+  ]
+}

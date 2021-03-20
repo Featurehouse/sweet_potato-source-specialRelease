@@ -10,6 +10,7 @@ import org.featurehouse.annotation.HardCoded;
 import org.featurehouse.annotation.NonMinecraftNorFabric;
 import org.featurehouse.spm.SPMMain;
 import org.featurehouse.spm.blocks.GrinderBlock;
+import org.featurehouse.spm.entity.damage.GrinderExplodeDamageSource;
 import org.featurehouse.spm.screen.GrinderScreenHandler;
 import org.featurehouse.spm.util.Util;
 import org.featurehouse.spm.util.properties.grinder.IntGrinderProperties;
@@ -248,7 +249,7 @@ public class GrinderBlockEntity extends AbstractLockableContainerBlockEntity imp
         if (this.ingredientData >= 50.0D) {
             if (!world.isClient) {
                 Vec3d vec3d = Vec3d.ofCenter(pos);
-                world.createExplosion(null, null, new ExplosionBehavior() {
+                world.createExplosion(null, GrinderExplodeDamageSource.of(), new ExplosionBehavior() {
                             @Override
                             public boolean canDestroyBlock(Explosion explosion, BlockView world, BlockPos pos, BlockState state, float power) {
                                 return false;

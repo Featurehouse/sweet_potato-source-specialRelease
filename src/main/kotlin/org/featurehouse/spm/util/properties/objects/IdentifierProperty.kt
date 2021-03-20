@@ -25,12 +25,12 @@ open class IdentifierProperty private constructor(name: String, private val col:
         else Optional.of(id)
     }
 
-    //@Deprecated("bug", level = DeprecationLevel.ERROR)
+    @Deprecated("bug", level = DeprecationLevel.ERROR)
     companion object {
         fun ofBlocks(name: String, tag: Tag<Block>) = ofRegistry(name, tag, Registry.BLOCK)
         fun ofItems (name: String, tag: Tag<Item> ) = ofRegistry(name, tag, Registry.ITEM)
 
-        fun <T> ofRegistry(name: String, tag: Tag<T>, registry: DefaultedRegistry<T>)
+        private fun <T> ofRegistry(name: String, tag: Tag<T>, registry: DefaultedRegistry<T>)
              = IdentifierProperty(name, tag.values().stream().map(registry::getId).collect(Collectors.toSet()))
     }
 }

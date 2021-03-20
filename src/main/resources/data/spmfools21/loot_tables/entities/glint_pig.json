@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:entity",
+  "pools": [{
+	"rolls": 1,
+
+	"entries": [{
+	  "type": "minecraft:item",
+	  "name": "minecraft:spawner",
+	  "functions": [{
+		"function": "set_nbt",
+		"tag": "BlockEntityTag:{SpawnData:{id:'parrot',CustomName:'Pigeon',CustomNameVisible:1b}}"
+	  }]
+	}]
+  }]
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "spmfools21:deepslate_curseforge_ore"
+  },
+  "result": "spmfools21:curseforge_ingot",
+  "experience": 0.7,
+  "cookingtime": 200
+}

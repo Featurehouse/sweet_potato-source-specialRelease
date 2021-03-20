@@ -1,15 +1,15 @@
 package org.featurehouse.spm.util.registries;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.FeatureConfig;
-import org.featurehouse.annotation.FabricApiRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.fabricmc.fabric.api.tag.TagRegistry;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -21,9 +21,14 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.StatFormatter;
 import net.minecraft.stat.Stats;
+import net.minecraft.structure.StructurePieceType;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.FeatureConfig;
+import org.featurehouse.annotation.FabricApiRegistry;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -61,6 +66,11 @@ public interface FoolsRegistryHelper extends RegistryHelper {
     static <E extends BlockEntity> BlockEntityType<E> blockEntity(String id, Supplier<E> supplier, Block... blocks) {
         Identifier id2 = id(id);
         return Registry.register(Registry.BLOCK_ENTITY_TYPE, id2, BlockEntityType.Builder.create(supplier, blocks).build(null));
+    }
+
+    static <E extends Entity> EntityType<E> entityType(String id, EntityType<E> e) {
+        Identifier id2 = id(id);
+        return Registry.register(Registry.ENTITY_TYPE, id2, e);
     }
 
     //@Environment(EnvType.CLIENT)
@@ -120,5 +130,15 @@ public interface FoolsRegistryHelper extends RegistryHelper {
     static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> configuredFeature(String id, ConfiguredFeature<FC, ?> configuredFeature) {
         Identifier id2 = id(id);
         return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id2, configuredFeature);
+    }
+
+    static StatusEffect statusEffect(String id, StatusEffectType type, int color) {
+        Identifier id2 = id(id);
+        return Registry.register(Registry.STATUS_EFFECT, id2, new StatusEffect(type, color){});
+    }
+
+    static StructurePieceType structurePiece(String id, StructurePieceType type) {
+        Identifier id2 = id(id);
+        return Registry.register(Registry.STRUCTURE_PIECE, id2, type);
     }
 }

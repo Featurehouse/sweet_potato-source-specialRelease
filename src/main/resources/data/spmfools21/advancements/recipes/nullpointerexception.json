@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "spmfools21:nullpointerexception"
+    ]
+  },
+  "criteria": {
+    "_": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "spmfools21:nullpointerexception"
+      }
+    },
+    "ms": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "item": "spmfools21:microstone"
+        }]
+      }
+    },
+    "compass": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{
+          "item": "minecraft:compass"
+        }]
+      }
+    }
+  },
+  "requirements": [[
+    "_", "ms", "compass"
+  ]]
+}

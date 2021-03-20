@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+	"ZZZ",
+	"ZiZ",
+	" i "
+  ],
+  "key": {
+	"Z": {
+	  "item": "spmfools21:curseforge_ingot"
+	},
+	"i": {
+	  "item": "minecraft:stick"
+	}
+  },
+  "result": {
+	"item": "spmfools21:microhammer"
+  }
+}

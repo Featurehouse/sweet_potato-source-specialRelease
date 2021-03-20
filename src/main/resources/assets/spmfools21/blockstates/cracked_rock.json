@@ -1,0 +1,71 @@
+{
+  "multipart": [
+    {
+      "when": {"name": "cobblestone"},
+      "apply": {"model": "block/cobblestone"}
+    },
+    {
+      "when": {"name": "stone"},
+      "apply": {"model": "block/stone"}
+    },
+    {
+      "when": {"name": "granite"},
+      "apply": {"model": "block/granite"}
+    },
+    {
+      "when": {"name": "diorite"},
+      "apply": {"model": "block/diorite"}
+    },
+    {
+      "when": {"name": "andesite"},
+      "apply": {"model": "block/andesite"}
+    },
+    {
+      "when": {"name": "blackstone"},
+      "apply": {"model": "block/blackstone"}
+    },
+    {
+      "when": {"name": "polished_blackstone"},
+      "apply": {"model": "block/polished_blackstone"}
+    },
+    {
+      "when": {"name": "chiseled_polished_blackstone"},
+      "apply": {"model": "block/chiseled_polished_blackstone"}
+    },
+    {
+      "when": {"name": "polished_blackstone_bricks"},
+      "apply": {"model": "block/polished_blackstone_bricks"}
+    },
+    {
+      "when": {"name": "cracked_polished_blackstone_bricks"},
+      "apply": {"model": "block/cracked_polished_blackstone_bricks"}
+    },
+    {
+      "when": {"name": "gilded_blackstone"},
+      "apply": {"model": "block/gilded_blackstone"}
+    },
+    {
+      "when": {"name": "basalt"},
+      "apply": {"model": "block/basalt"}
+    },
+    {
+      "when": {"name": "tuff"},
+      "apply": {"model": "block/tuff"}
+    },
+    {
+      "when": {"name": "calcite"},
+      "apply": {"model": "block/calcite"}
+    },
+    {
+      "when": {"name": "deepslate"},
+      "apply": {"model": "block/deepslate"}
+    },
+    {
+      "when": {"name": "smooth_basalt"},
+      "apply": {"model": "block/smooth_basalt"}
+    },
+    {
+      "apply": {"model": "spmfools21:block/crack"}
+    }
+  ]
+}

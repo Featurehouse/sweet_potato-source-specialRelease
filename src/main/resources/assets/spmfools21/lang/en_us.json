@@ -1,19 +1,32 @@
 {
   "death.attack.spmfools21.steve_spawn": "The soul of %1$s is fused into Steve",
   "death.attack.spmfools21.steve_spawn.player": "The soul of %1$s is fused into Steve by %2$s",
+  "death.attack.spmfools21.grinder_explode": "%1$s is choked by the overflowing powder",
+  "death.attack.spmfools21.grinder_explode.player": "%1$s is choked by the overflowing powder made by %2$s",
 
   "item.spmfools21.steve_spawn_egg": "Steve Spawn Egg",
 
   "message.spmfools21.java.lang.StackOverflowError": "Stack Overflows at %s",
+  "message.spmfools21.stone_nugget.not_deeam": "YOU ARE NOT DEEAM!",
 
   "block.spmfools21.curseforge_block": "Curse Forge Block",
   "block.spmfools21.curseforge_ore": "Curse Forge Ore",
+  "block.spmfools21.deepslate_curseforge_ore": "Deepslate Curse Forge Ore",
   "block.spmfools21.cracked_rock": "Cracked Rock",
   "block.spmfools21.microstone": "Microstone",
   "block.spmfools21.deep_dark_fantasy": "Deep Dark Fantasy",
+  "block.spmfools21.elevator_block": "Elevator Block",
   "item.spmfools21.curseforge_ingot": "Curse Forge Ingot",
   "item.spmfools21.horse_bucket": "Horse Bucket",
   "item.spmfools21.fabric": "Fabric™: The Forge Killer",
+  "item.spmfools21.microhammer": "Microhammer",
+  "item.spmfools21.stone_nugget": "Stone Nugget",
+  "item.spmfools21.nullpointerexception": "NullPointerException",
+  "item.spmfools21.nullpointerexception.told_you": "I TOLD YOU NOT TO RIGHT CLICK!",
+  "item.spmfools21.kotlin": "Kotlin",
+  "entity.spmfools21.glint_pig": "Glowing Pig",
+  "effect.spmfools21.deeam": "Deeam",
+  "effect.spmfools21.bugjump": "BUGJUMP",
 
   "container.spmfools21.deep_dark_fantasy": "Deep Dark Fantasy",
 

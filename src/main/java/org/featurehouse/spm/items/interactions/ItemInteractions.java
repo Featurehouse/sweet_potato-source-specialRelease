@@ -3,8 +3,8 @@ package org.featurehouse.spm.items.interactions;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.HorseBaseEntity;
 import net.minecraft.item.ItemStack;
@@ -31,10 +31,10 @@ public class ItemInteractions {
                 if (playerEntity.getStackInHand(hand).getItem() instanceof SteveSpawnEggItem)
                     return SteveSpawnEggItem.onUse(world, blockHitResult.getPos());
                 return ActionResult.PASS;
-            } else return ActionResult.SUCCESS;
+            } else return ActionResult.PASS;
         });
         UseEntityCallback.EVENT.register((playerEntity, world, hand, entity, entityHitResult) -> {
-            if (world.isClient) return ActionResult.SUCCESS;
+            if (world.isClient) return ActionResult.PASS;
             if (playerEntity.getStackInHand(hand).getItem() instanceof SteveSpawnEggItem
                 && entity instanceof MobEntity) {
                 entity.damage(SteveSpawnDamageSource.of(), Float.MAX_VALUE);
@@ -44,29 +44,33 @@ public class ItemInteractions {
         });
         AttackBlockCallback.EVENT.register((playerEntity, world, hand, blockPos, direction) -> {
             if (world.isClient) return ActionResult.PASS;
-            if (playerEntity.getStackInHand(hand).getItem() instanceof MicrohammerItem) {
+            ItemStack stack = playerEntity.getStackInHand(hand);
+            ServerWorld serverWorld = (ServerWorld) world;
+            if (stack.getItem() instanceof MicrohammerItem) {
                 BlockState state = world.getBlockState(blockPos);
                 if (state.isIn(SPMFools.MICROHAMMER_BREAKABLE)) {
                     return world.setBlockState(blockPos, SPMFools.CRACKED_ROCK.get(state.getBlock()))
                             ? ActionResult.CONSUME : ActionResult.PASS;
                 } else if (state.getBlock() instanceof CrackedRockBlock) {
                     if (world.random.nextFloat() < 0.3F) {
-                        ServerWorld serverWorld = (ServerWorld) world;
-                        world.breakBlock(blockPos, false, playerEntity);
-                        LootTable lootTable = serverWorld.getServer().getLootManager().getTable(LootTables.CRACKED_ROCK);
-                        LootContext context = new LootContext.Builder(serverWorld)
-                                .random(world.random)
+                        LootContext.Builder builder = new LootContext.Builder(serverWorld)
+                                .random(world.getRandom())
                                 .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(blockPos))
+                                .parameter(LootContextParameters.TOOL, stack)
+                                .optionalParameter(LootContextParameters.THIS_ENTITY, playerEntity);
+                        LootContext lootContext = builder.parameter(LootContextParameters.BLOCK_STATE, world.getBlockState(blockPos))
                                 .build(LootContextTypes.BLOCK);
-                        lootTable.generateLoot(context, itemStack -> world.spawnEntity(new ItemEntity(world,
-                                blockPos.getX() + 0.5D, blockPos.getY() + 0.5D, blockPos.getZ() + 0.5D,
-                                itemStack)));
+                        LootTable lootTable = serverWorld.getServer().getLootManager().getTable(LootTables.CRACKED_ROCK);
+                        lootTable.generateLoot(lootContext, itemStack -> {
+                            Block.dropStack(world, blockPos, itemStack);
+                            state.onStacksDropped(serverWorld, blockPos, itemStack);
+                        });
                     }
                 }
             } return ActionResult.PASS;
         });
         UseEntityCallback.EVENT.register((playerEntity, world, hand, entity, entityHitResult) -> {
-            if (world.isClient) return ActionResult.SUCCESS;
+            if (world.isClient) return ActionResult.PASS;
             if (entity instanceof HorseBaseEntity && playerEntity.isSneaking()) {
                 ItemStack originBucket = playerEntity.getStackInHand(hand);
                 if (originBucket.getItem() == Items.BUCKET) {
