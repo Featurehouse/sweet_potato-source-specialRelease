@@ -9,6 +9,10 @@ public interface IntDeepDarkFantasyProperties extends PropertyDelegate {
     void setIngredientData(int ingredientData);
     void setSublimateTime(short sublimateTime);
 
+    default boolean isWorking() {
+        return getSublimateTime() >= 0;
+    }
+
     @Override
     default int get(int index) {
         switch (index) {

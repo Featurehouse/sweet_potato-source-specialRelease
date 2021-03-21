@@ -8,12 +8,17 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.item.Item;
+import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Heightmap;
 import org.featurehouse.annotation.Diff16and17;
 import org.featurehouse.spm.blocks.ElevatorBlock;
 import org.featurehouse.spm.blocks.CrackedRockBlock;
@@ -27,6 +32,7 @@ import org.featurehouse.spm.items.MicrohammerItem;
 import org.featurehouse.spm.items.SteveSpawnEggItem;
 import org.featurehouse.spm.items.StoneNuggetItem;
 import org.featurehouse.spm.items.interactions.ItemInteractions;
+import org.featurehouse.spm.screen.DeepDarkFantasyScreenHandler;
 import org.featurehouse.spm.structures.Structures;
 import org.featurehouse.spm.util.properties.objects.BlockSettings;
 import org.featurehouse.spm.util.properties.objects.ItemSettings;
@@ -68,7 +74,13 @@ public class SPMFools implements ModInitializer {
 
     public static final BlockEntityType<DeepDarkFantasyBlockEntity> DEEP_DARK_FANTASY_BLOCK_ENTITY_TYPE;
 
+    /**
+     * @see net.minecraft.entity.passive.PigEntity
+     * @see EntityType#PIG
+     */
     public static final EntityType<GlintPigEntity> GLINT_PIG;
+
+    public static final ScreenHandlerType<DeepDarkFantasyScreenHandler> DEEP_DARK_FANTASY_SCREEN_HANDLER_TYPE;
 
     public static final SoundEvent SERVER_CRASHING;
     public static final SoundEvent BUCKET_HUNGRY;
@@ -116,7 +128,11 @@ public class SPMFools implements ModInitializer {
 
         DEEP_DARK_FANTASY_BLOCK_ENTITY_TYPE = blockEntity("deep_dark_fantasy", DeepDarkFantasyBlockEntity::new, DEEP_DARK_FANTASY);
 
-        GLINT_PIG = entityType("glint_pig", FabricEntityTypeBuilder.<GlintPigEntity>createLiving().entityFactory(GlintPigEntity::new).dimensions(EntityDimensions.changing(.9F, .9F)).trackRangeBlocks(10).build());
+        GLINT_PIG = entityType("glint_pig", FabricEntityTypeBuilder.<GlintPigEntity>createMob().entityFactory(GlintPigEntity::new).dimensions(EntityDimensions.changing(.9F, .9F)).trackRangeBlocks(10).spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,
+                (type, serverWorldAccess, spawnReason, pos, random) -> SpawnReason.STRUCTURE == spawnReason).defaultAttributes(PigEntity::createPigAttributes).build());
+        //GLINT_PIG = entityType("glint_pig", FabricEntityTypeBuilder.<GlintPigEntity>createLiving().entityFactory(GlintPigEntity::new).dimensions(EntityDimensions.changing(.9F, .9F)).trackRangeBlocks(10).build());
+
+        DEEP_DARK_FANTASY_SCREEN_HANDLER_TYPE = simpleScreenHandler("deep_dark_fantasy", DeepDarkFantasyScreenHandler::new);
 
         SERVER_CRASHING = sound("background.tip.server_crashing");
         BUCKET_HUNGRY = sound("item.bucket.hungry");

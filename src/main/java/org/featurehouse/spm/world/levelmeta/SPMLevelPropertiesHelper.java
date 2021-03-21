@@ -1,5 +1,6 @@
 package org.featurehouse.spm.world.levelmeta;
 
+import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.SaveProperties;
@@ -33,7 +34,11 @@ public class SPMLevelPropertiesHelper {
     @NotNull /* Empty Compound Tag: not initialized. */
     public static CompoundTag getFoolsData(MinecraftServer server) {
         CompoundTag tag = ((SPMLevelProperties) server.getSaveProperties()).sweetPotato_getSPMMetaRaw();
-        return tag.getCompound("spmfools21");
+        if (tag.contains("spmfools21", NbtType.COMPOUND))
+            return tag.getCompound("spmfools21");
+        CompoundTag ret = new CompoundTag();
+        tag.put("spmfools21", ret);
+        return ret;
     }
 
     /* False: Not Initialized */

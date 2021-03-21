@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.sound.SoundCategory;
@@ -23,6 +24,8 @@ import org.featurehouse.spm.mixin.ClientWorldAccessor;
 public class SPMFoolsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        ScreenRegistry.register(SPMFools.DEEP_DARK_FANTASY_SCREEN_HANDLER_TYPE, DeepDarkFantasyScreen::new);
+
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex == 0 ?
                   0x009999 /*Blue*/ : 0x865334 /*Brown*/ , SPMFools.STEVE_SPAWN_EGG);
         ClientTickEvents.START_WORLD_TICK.register(clientWorld -> {

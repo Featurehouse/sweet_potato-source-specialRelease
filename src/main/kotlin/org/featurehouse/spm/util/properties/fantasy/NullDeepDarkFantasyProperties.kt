@@ -1,6 +1,6 @@
 package org.featurehouse.spm.util.properties.fantasy
 
-data class NullDeepDarkFantasyProperties(private var ingredientData: Int, private var sublimateTime: Short) : IntDeepDarkFantasyProperties {
+data class NullDeepDarkFantasyProperties(private var ingredientData: Int = Int.MIN_VALUE + 1, private var sublimateTime: Short = (Short.MIN_VALUE + 1).toShort()) : IntDeepDarkFantasyProperties {
     override fun getIngredientData() = ingredientData
     override fun setIngredientData(ingredientData: Int) { this.ingredientData = ingredientData }
     override fun getSublimateTime() = sublimateTime
