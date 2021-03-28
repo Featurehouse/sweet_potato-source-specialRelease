@@ -32,7 +32,7 @@ class ElevatorBlock(settings: Settings) : Block(settings) {
 
     private fun bounce(entity: LivingEntity) {
         val vec3d: Vec3d = entity.velocity
-        entity.setVelocity(vec3d.x, 8.0, vec3d.z)
+        entity.setVelocity(vec3d.x, 12.95, vec3d.z)
         entity.addStatusEffect(StatusEffectInstance(SPMFools.BUGJUMP, 100))
     }
 }
