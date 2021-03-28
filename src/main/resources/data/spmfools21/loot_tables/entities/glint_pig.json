@@ -8,7 +8,7 @@
 	  "name": "minecraft:spawner",
 	  "functions": [{
 		"function": "set_nbt",
-		"tag": "{BlockEntityTag:{SpawnData:{id:'parrot',CustomName:'\"Pigeon\"',CustomNameVisible:1b}}}"
+		"tag": "{BlockEntityTag:{SpawnData:{id:'parrot',\"spmfools21:info\":{IsPigeon:true},CustomName:'\"Pigeon\"',CustomNameVisible:1b}}}"
 	  }]
 	}]
   }]

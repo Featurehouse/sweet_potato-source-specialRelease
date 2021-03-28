@@ -70,7 +70,7 @@ public class SPMFools implements ModInitializer {
     public static final Item KOTLIN;
     public static final Item ELEVATOR_BLOCK_ITEM;
 
-    public static final Item FABRIC;
+    public static final Item FABRIC, DEEAM_ITEM, BUGJUMP_ITEM;
 
     public static final BlockEntityType<DeepDarkFantasyBlockEntity> DEEP_DARK_FANTASY_BLOCK_ENTITY_TYPE;
 
@@ -121,6 +121,8 @@ public class SPMFools implements ModInitializer {
         MICROSTONE_ITEM = blockItem("microstone", MICROSTONE, ItemSettings.MISC);
         DEEP_DARK_FANTASY_ITEM = blockItem("deep_dark_fantasy", DEEP_DARK_FANTASY, ItemSettings.DECORATIONS);
         FABRIC = defaultItem("fabric", ItemSettings.EASTER_EGG);
+        DEEAM_ITEM = defaultItem("deeam", ItemSettings.EASTER_EGG);
+        BUGJUMP_ITEM = defaultItem("bugjump", ItemSettings.EASTER_EGG);
         STONE_NUGGET = item("stone_nugget", new StoneNuggetItem(ItemSettings.UNC_MISC));
         NULLPOINTEREXCEPTION = item("nullpointerexception", new NullPointerExceptionItem(ItemSettings.TOOL_ONE_UNC));
         KOTLIN = defaultItem("kotlin", ItemSettings.MISC);

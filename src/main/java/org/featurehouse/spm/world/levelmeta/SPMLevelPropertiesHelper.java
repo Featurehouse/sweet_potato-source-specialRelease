@@ -1,10 +1,12 @@
 package org.featurehouse.spm.world.levelmeta;
 
-import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.WorldSavePath;
 import net.minecraft.world.SaveProperties;
 import org.jetbrains.annotations.NotNull;
+
+import java.nio.file.Path;
 
 public class SPMLevelPropertiesHelper {
     public static final int DATA_VERSION = 16;  // alpha.5pi.
@@ -32,23 +34,19 @@ public class SPMLevelPropertiesHelper {
     }
 
     @NotNull /* Empty Compound Tag: not initialized. */
-    public static CompoundTag getFoolsData(MinecraftServer server) {
-        CompoundTag tag = ((SPMLevelProperties) server.getSaveProperties()).sweetPotato_getSPMMetaRaw();
-        if (tag.contains("spmfools21", NbtType.COMPOUND))
-            return tag.getCompound("spmfools21");
-        CompoundTag ret = new CompoundTag();
-        tag.put("spmfools21", ret);
-        return ret;
+    public static FoolsDataDelegate getFoolsData(MinecraftServer server) {
+        Path path = server.getSavePath(WorldSavePath.ROOT).resolve("spmfools21.dat");
+        return new FoolsDataDelegate(path.toFile());
     }
 
     /* False: Not Initialized */
     public static boolean hasInitializedGlintPig(MinecraftServer server) {
-        CompoundTag tag = getFoolsData(server);
-        return tag.getBoolean("HasInitializedGlintPig");
+        FoolsDataDelegate data = getFoolsData(server);
+        return data.read();
     }
 
     public static void setInitializedGlintPig(MinecraftServer server) {
-        CompoundTag tag = getFoolsData(server);
-        tag.putBoolean("HasInitializedGlintPig", true);
+        FoolsDataDelegate data = getFoolsData(server);
+        data.write(true);
     }
 }
