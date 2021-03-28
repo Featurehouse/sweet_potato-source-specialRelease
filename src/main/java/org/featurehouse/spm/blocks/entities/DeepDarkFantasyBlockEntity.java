@@ -28,6 +28,7 @@ import net.minecraft.world.explosion.ExplosionBehavior;
 import org.featurehouse.spm.SPMFools;
 import org.featurehouse.spm.blocks.GrinderBlock;
 import org.featurehouse.spm.entity.damage.GrinderExplodeDamageSource;
+import org.featurehouse.spm.screen.DeepDarkFantasyScreenHandler;
 import org.featurehouse.spm.util.properties.fantasy.IntDeepDarkFantasyProperties;
 import org.featurehouse.spm.util.properties.state.BooleanStateManager;
 import org.jetbrains.annotations.Nullable;
@@ -106,7 +107,7 @@ public class DeepDarkFantasyBlockEntity extends AbstractLockableContainerBlockEn
 
     @Override
     protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-        return null;    //TODO
+        return new DeepDarkFantasyScreenHandler(syncId, playerInventory, this, this.properties);
     }
 
     @Override
@@ -128,19 +129,20 @@ public class DeepDarkFantasyBlockEntity extends AbstractLockableContainerBlockEn
             }
 
             if (!shallCooldown()) {
-                ItemStack microstoneSlot = this.inventory.get(2);
-                if (isValidIngredient(this.inventory.get(0)) && microstoneSlot.getItem() == SPMFools.MICROSTONE_ITEM) {
+                if (isValidIngredient(this.inventory.get(0))) {
                     this.ingredientData++;
                     this.inventory.get(0).decrement(1);
-                    this.inventory.get(2).decrement(1);
+                    //this.inventory.get(2).decrement(1);
                     this.absorbCooldown = 5;
                     shallMarkDirty = true;
                 }
             } else --this.absorbCooldown;
 
-            if (this.ingredientData >= SUBLIMATE_INGREDIENT_DATA && !isSublimating()) {
+            ItemStack msSlot = this.inventory.get(2);
+            if (this.ingredientData >= SUBLIMATE_INGREDIENT_DATA && !isSublimating() && msSlot.getItem() == SPMFools.MICROSTONE_ITEM) {
                 this.ingredientData -= SUBLIMATE_INGREDIENT_DATA;
                 this.sublimateTime = 0;
+                msSlot.decrement(1);
                 shallMarkDirty = true;
             }
 

@@ -3,8 +3,11 @@ package org.featurehouse.spm.item
 import net.fabricmc.fabric.api.util.NbtType
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.SpawnReason
+import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemUsageContext
+import net.minecraft.nbt.DoubleTag
+import net.minecraft.nbt.ListTag
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.sound.SoundCategory
 import net.minecraft.util.ActionResult
@@ -20,10 +23,10 @@ object HorseBucketItem : Item(ItemSettings.MISC_ONE) {
         if (context?.world?.isClient != false) return ActionResult.SUCCESS
 
         if (context.world.random.nextDouble() < 0.10) {
-            context.world.playSoundFromEntity(context.player, context.player, SPMFools.BUCKET_HUNGRY,
-                    SoundCategory.PLAYERS, context.world.random.nextFloat() * 0.2F + 0.8F, 1.0F
-                )
-            context.player?.getStackInHand(context.hand)?.decrement(1)
+            val player: PlayerEntity = context.player ?: return ActionResult.CONSUME
+            context.world.playSound(null, player.x, player.y, player.z, SPMFools.BUCKET_HUNGRY, SoundCategory.AMBIENT,
+            1.0F, 1.0F)
+            player.getStackInHand(context.hand)?.decrement(1)
             return ActionResult.CONSUME
         }
 
@@ -31,11 +34,18 @@ object HorseBucketItem : Item(ItemSettings.MISC_ONE) {
         val blockPos2: BlockPos = blockPos.offset(context.side)
         val compoundTag = context.stack.orCreateTag
         if (compoundTag.contains("EntityTag", NbtType.COMPOUND)) {
-            val id = Identifier(compoundTag.getCompound("EntityTag").getString("id"))
+            val entityTag = compoundTag.getCompound("EntityTag")
+            val id = Identifier(entityTag.getString("id"))
+            val listTag = ListTag()
+            listTag.add(DoubleTag.of(blockPos2.x + 0.5))
+            listTag.add(DoubleTag.of(blockPos2.y.toDouble() ))
+            listTag.add(DoubleTag.of(blockPos2.z + 0.5))
+            entityTag.put("Pos", listTag)
             val entityType: EntityType<*> = Registry.ENTITY_TYPE[id]
             entityType.spawnFromItemStack(context.world as ServerWorld, context.stack, context.player, blockPos,
                     SpawnReason.SPAWN_EGG, true, blockPos==blockPos2 && context.side === Direction.UP
             ) ?: return ActionResult.PASS
+
         }
         return ActionResult.CONSUME
     }

@@ -26,7 +26,7 @@ class DeepDarkFantasyScreen(handler: DeepDarkFantasyScreenHandler, inventory: Pl
         RenderSystem.disableBlend()
         super.drawForeground(matrices, mouseX, mouseY)
         val ingredientData = this.handler.ingredientData
-        this.textRenderer.draw(matrices, ingredientData.toString(), 5.0f, 3.0f, 0)
+        this.textRenderer.draw(matrices, ingredientData.toString(), 105.0f, 3.0f, 0)
     }
 
     @Environment(EnvType.CLIENT)

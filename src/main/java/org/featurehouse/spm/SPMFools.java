@@ -115,7 +115,7 @@ public class SPMFools implements ModInitializer {
         CURSEFORGE_INGOT = defaultItem("curseforge_ingot", ItemSettings.MISC);
         CURSEFORGE_BLOCK_ITEM = blockItem("curseforge_block", CURSEFORGE_BLOCK, ItemSettings.BUILDING);
         CURSEFORGE_ORE_ITEM = blockItem("curseforge_ore", CURSEFORGE_ORE, ItemSettings.BUILDING);
-        DEEPSLATE_CURSEFORGE_ORE_ITEM = blockItem("deepslate_curseforge_ore", CURSEFORGE_ORE, ItemSettings.BUILDING);
+        DEEPSLATE_CURSEFORGE_ORE_ITEM = blockItem("deepslate_curseforge_ore", DEEPSLATE_CURSEFORGE_ORE, ItemSettings.BUILDING);
         HORSE_BUCKET = item("horse_bucket", HorseBucketItem.INSTANCE);
         MICROHAMMER = item("microhammer", new MicrohammerItem(ItemSettings.TOOL_ONE));
         MICROSTONE_ITEM = blockItem("microstone", MICROSTONE, ItemSettings.MISC);

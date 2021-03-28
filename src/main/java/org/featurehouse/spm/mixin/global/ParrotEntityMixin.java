@@ -12,6 +12,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Util;
 import net.minecraft.world.World;
+import org.featurehouse.spm.util.Pigeon;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,8 +23,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Set;
 
 @Mixin(ParrotEntity.class)
-public abstract class ParrotEntityMixin extends TameableShoulderEntity {
+public abstract class ParrotEntityMixin extends TameableShoulderEntity implements Pigeon {
     @Unique protected boolean spmfools21_isPigeon;
+
+    @Override
+    public boolean spmfools21_isPigeon() {
+        return spmfools21_isPigeon;
+    }
+
+    @Override
+    public void spmfools21_setPigeon(boolean pigeon) {
+        spmfools21_isPigeon = pigeon;
+    }
 
     @Deprecated
     private ParrotEntityMixin(EntityType<? extends TameableShoulderEntity> entityType, World world) {

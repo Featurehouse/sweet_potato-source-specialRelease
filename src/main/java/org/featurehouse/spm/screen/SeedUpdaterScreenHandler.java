@@ -1,21 +1,24 @@
 package org.featurehouse.spm.screen;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.ParrotEntity;
-import net.minecraft.text.LiteralText;
-import org.featurehouse.spm.SPMMain;
-import org.featurehouse.spm.recipe.SeedUpdatingRecipe;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ForgingScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
+import net.minecraft.text.LiteralText;
 import net.minecraft.world.World;
-
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.featurehouse.spm.SPMMain;
+import org.featurehouse.spm.recipe.SeedUpdatingRecipe;
+import org.featurehouse.spm.util.Util;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 
 public class SeedUpdaterScreenHandler extends ForgingScreenHandler {
@@ -74,8 +77,10 @@ public class SeedUpdaterScreenHandler extends ForgingScreenHandler {
             ParrotEntity parrotEntity = new ParrotEntity(EntityType.PARROT, world1);
             parrotEntity.setCustomName(new LiteralText("Pigeon"));
             parrotEntity.setPos(player.getX(), player.getY() + 2.0D, player.getZ());
+            Util.setPigeon(parrotEntity);
             parrotEntity.setCustomNameVisible(true);
             world1.spawnEntity(parrotEntity);
+            LOGGER.info("Pigeon spawned at {}", parrotEntity.getPos());
         });
         player.incrementStat(SPMMain.CROP_UPGRADED);
         return stack;
@@ -98,4 +103,6 @@ public class SeedUpdaterScreenHandler extends ForgingScreenHandler {
     public void onContentChanged(Inventory inventory) {
         super.onContentChanged(inventory);
     }
+
+    private static final Logger LOGGER = LogManager.getLogger("The Pigeon Foundation");
 }

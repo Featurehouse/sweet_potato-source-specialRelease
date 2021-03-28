@@ -1,5 +1,6 @@
 package org.featurehouse.spm.util;
 
+import net.minecraft.entity.passive.ParrotEntity;
 import org.featurehouse.annotation.NonMinecraftNorFabric;
 import org.featurehouse.spm.blocks.entities.GrinderBlockEntity;
 import net.minecraft.item.Item;
@@ -12,6 +13,10 @@ import org.jetbrains.annotations.Nullable;
 
 public final class Util {
     private Util() {}
+
+    public static void setPigeon(ParrotEntity parrot) {
+        ((Pigeon) parrot).spmfools21_setPigeon(true);
+    }
 
     @NonMinecraftNorFabric
     public static void registerGrindableItem(double ingredientDataAdded, @NotNull ItemConvertible item) {

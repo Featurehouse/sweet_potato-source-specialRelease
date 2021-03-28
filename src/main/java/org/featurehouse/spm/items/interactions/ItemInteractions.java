@@ -30,8 +30,8 @@ public class ItemInteractions {
             if (!world.isClient) {
                 if (playerEntity.getStackInHand(hand).getItem() instanceof SteveSpawnEggItem)
                     return SteveSpawnEggItem.onUse(world, blockHitResult.getPos());
-                return ActionResult.PASS;
-            } else return ActionResult.PASS;
+            }
+            return ActionResult.PASS;
         });
         UseEntityCallback.EVENT.register((playerEntity, world, hand, entity, entityHitResult) -> {
             if (world.isClient) return ActionResult.PASS;
@@ -49,10 +49,13 @@ public class ItemInteractions {
             if (stack.getItem() instanceof MicrohammerItem) {
                 BlockState state = world.getBlockState(blockPos);
                 if (state.isIn(SPMFools.MICROHAMMER_BREAKABLE)) {
+                    stack.damage(1, playerEntity, e -> {});
                     return world.setBlockState(blockPos, SPMFools.CRACKED_ROCK.get(state.getBlock()))
                             ? ActionResult.CONSUME : ActionResult.PASS;
                 } else if (state.getBlock() instanceof CrackedRockBlock) {
+                    stack.damage(1, playerEntity, e -> {});
                     if (world.random.nextFloat() < 0.3F) {
+                        world.removeBlock(blockPos, false);
                         LootContext.Builder builder = new LootContext.Builder(serverWorld)
                                 .random(world.getRandom())
                                 .parameter(LootContextParameters.ORIGIN, Vec3d.ofCenter(blockPos))
@@ -77,7 +80,11 @@ public class ItemInteractions {
                     entity.removeAllPassengers();
                     CompoundTag tag = new CompoundTag();
                     entity.saveSelfToTag(tag);
+                    tag.remove("Pos");
+                    tag.remove("UUID");
                     entity.remove();
+                    if (!playerEntity.abilities.creativeMode)
+                        originBucket.decrement(1);
                     ItemStack horseBucket = new ItemStack(SPMFools.HORSE_BUCKET);
                     horseBucket.getOrCreateTag().put("EntityTag", tag);
                     if (!playerEntity.inventory.insertStack(horseBucket))

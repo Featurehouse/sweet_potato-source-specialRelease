@@ -23,7 +23,7 @@ public class Structures {
     public static void init() {
         FabricStructureBuilder.create(id("elevator_altar"), ELEVATOR_ALTAR_STRUCTURE)
                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
-                .defaultConfig(32, 8, ELEVATOR_ALTAR_STRUCTURE.hashCode())
+                .defaultConfig(8, 2, ELEVATOR_ALTAR_STRUCTURE.hashCode())
                 .adjustsSurface()
                 .register();
         RegistryKey<ConfiguredStructureFeature<?, ?>> key = RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_WORLDGEN, id("elevator_altar"));
