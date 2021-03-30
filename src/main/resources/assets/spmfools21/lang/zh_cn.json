@@ -32,5 +32,22 @@
   "container.spmfools21.deep_dark_fantasy": "Deep Dark Fantasy",
   "subtitles.spmfools21.server_crashing": "服务端崩溃中...",
   "subtitles.spmfools21.bucket_hungry": "桶：饿了",
-  "death.spmfools21.parrot.pigeon": "咕咕咕！一只位于 %s 的鸽子被虐待致死"
+  "death.spmfools21.parrot.pigeon": "咕咕咕！一只位于 %s 的鸽子被虐待致死",
+  
+  "advancements.spmfools21.root.title": "Pigeon Infinity",
+  "advancements.spmfools21.root.desc": "这是一场与锻造台的竞赛...",
+  "advancements.spmfools21.get_ingot.title": "Fabric的天职",
+  "advancements.spmfools21.get_ingot.desc": "Curse(诅咒) Forge",
+  "advancements.spmfools21.get_hammer.title": "抛砖引玉",
+  "advancements.spmfools21.get_hammer.desc": "砸块石头看看",
+  "advancements.spmfools21.get_npe.title": "别碰右键",
+  "advancements.spmfools21.get_npe.desc": "java.lang.NullPointerException",
+  "advancements.spmfools21.get_ddf.title": "Deep♂Dark♂Fantasy",
+  "advancements.spmfools21.get_ddf.desc": "Forge的秘密",
+  "advancements.spmfools21.player_fly.title": "当玩家飞的时候",
+  "advancements.spmfools21.player_fly.desc": "这是...天界？",
+  "advancements.spmfools21.deeam.title": "宝剑锋从磨砺出",
+  "advancements.spmfools21.deeam.desc": "加油，针难人！",
+  "advancements.spmfools21.kotlin.title": "Null的正确打开方式",
+  "advancements.spmfools21.kotlin.desc": "Kotlin，永远的神"
 }

@@ -1,1 +1,24 @@
-{}
+{
+  "display": {
+    "icon": {
+	  "item": "spmfools21:microstone"
+	},
+	"title": {
+	  "translate": "advancments.spmfools21.root.title"
+	},
+	"description": {
+	  "translate": "advancments.spmfools21.root.desc"
+	},
+	"frame": "task",
+	"show_toast": false,
+	"announce_to_chat": false,
+	"hidden": false,
+	"background": "spmfools21:textures/block/deepslate_curseforge_ore.png"
+  },
+  "criteria": {
+    "ingame": {
+	  "trigger": "minecraft:tick",
+	  "conditions": {}
+	}
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+	  "item": "spmfools21:curseforge_ingot"
+	},
+	"frame": "task",
+	"show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+	"title": {
+      "translate": "advancement.spmfools21.get_ddf.title"
+    },
+    "description": {
+      "translate": "advancement.spmfools21.get_ddf.desc"
+    }
+  },
+  "parent": "spmfools21:forge/get_hammer",
+  "criteria": {
+    "get_ingot": {
+	  "trigger": "minecraft:inventory_changed",
+	  "conditions": {
+	    "items": [{
+		  "item": "spmfools21:deep_dark_fantasy"
+		}]
+	  }
+	}
+  }
+}

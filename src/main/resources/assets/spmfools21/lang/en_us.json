@@ -36,4 +36,21 @@
   "subtitles.spmfools21.bucket_hungry": "Bucket got hungry",
 
   "death.spmfools21.parrot.pigeon": "Coo coo coo! A pigeon at %s was abused to death"
+  
+  "advancements.spmfools21.root.title": "Pigeon Infinity",
+  "advancements.spmfools21.root.desc": "This is a competition against forge...",
+  "advancements.spmfools21.get_ingot.title": "The duty of Fabric",
+  "advancements.spmfools21.get_ingot.desc": "Curse  Forge",
+  "advancements.spmfools21.get_hammer.title": "Microstone?",
+  "advancements.spmfools21.get_hammer.desc": "Try to hit the rock",
+  "advancements.spmfools21.get_npe.title": "Don't click it!",
+  "advancements.spmfools21.get_npe.desc": "java.lang.NullPointerException",
+  "advancements.spmfools21.get_ddf.title": "Deep♂Dark♂Fantasy",
+  "advancements.spmfools21.get_ddf.desc": "Secret behind forge",
+  "advancements.spmfools21.player_fly.title": "When player flies",
+  "advancements.spmfools21.player_fly.desc": "Is that Heaven?",
+  "advancements.spmfools21.deeam.title": "Thank you, Deeam",
+  "advancements.spmfools21.deeam.desc": "Add oil bro",
+  "advancements.spmfools21.kotlin.title": "The way of opening null",
+  "advancements.spmfools21.kotlin.desc": "Kotlin is the best"
 }

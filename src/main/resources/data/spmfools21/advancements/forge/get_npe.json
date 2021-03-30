@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+	  "item": "minecraft:compass",
+	  "nbt": "{LodestoneTracked:0b,LodestoneDimension:\"minecraft:overworld\",LodestonePos:{X:0,Y:13,Z:1}}"
+	},
+	"frame": "task",
+	"show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+	"title": {
+      "translate": "advancement.spmfools21.get_npe.title"
+    },
+    "description": {
+      "translate": "advancement.spmfools21.get_npe.desc"
+    }
+  },
+  "parent": "spmfools21:forge/get_hammer",
+  "criteria": {
+    "get_ingot": {
+	  "trigger": "minecraft:inventory_changed",
+	  "conditions": {
+	    "items": [{
+		  "item": "spmfools21:nullpointerexception"
+		}]
+	  }
+	}
+  },
+  "rewards": {
+    "recipes": ["spmfools21:nullpointerexception"]
+  }
+}

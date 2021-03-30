@@ -1,0 +1,28 @@
+{
+  "display": {
+    "icon": {
+	  "item": "spmfools21:deeam"
+	},
+	"frame": "challenge",
+	"show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+	"title": {
+      "translate": "advancement.spmfools21.deeam.title"
+    },
+    "description": {
+      "translate": "advancement.spmfools21.deeam.desc"
+    }
+  },
+  "parent": "spmfools21:forge/get_ddf",
+  "criteria": {
+    "get_ingot": {
+	  "trigger": "minecraft:effects_changed",
+	  "conditions": {
+	    "effects": {
+		  "spmfools21:deeam": {}
+		}
+	  }
+	}
+  }
+}

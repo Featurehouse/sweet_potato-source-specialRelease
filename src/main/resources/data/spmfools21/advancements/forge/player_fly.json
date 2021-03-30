@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+	  "item": "spmfools21:bugjump"
+	},
+	"frame": "goal",
+	"show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false,
+	"title": {
+      "translate": "advancement.spmfools21.player_fly.title"
+    },
+    "description": {
+      "translate": "advancement.spmfools21.player_fly.desc"
+    }
+  },
+  "parent": "spmfools21:forge/get_hammer",
+  "criteria": {
+    "effect": {
+	  "trigger": "minecraft:effects_changed",
+	  "conditions": {
+	    "effects": {
+		  "spmfools21:bugjump": {}
+		}
+	  }
+	},
+	"y340": {
+	  "trigger": "minecraft:location",
+	  "conditions": {
+	    "y": {
+		  "min": 340.0
+		}
+	  }
+	}
+  }
+}
