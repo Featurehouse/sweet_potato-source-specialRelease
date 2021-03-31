@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.WorldAccess;
 import org.featurehouse.spm.SPMFools;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public class ElevatorAltarPiece extends SimpleStructurePiece {
     }
 
     @Override
-    protected void handleMetadata(String metadata, BlockPos pos, ServerWorldAccess serverWorldAccess, Random random, BlockBox boundingBox) {
+    protected void handleMetadata(String metadata, BlockPos pos, WorldAccess world, Random random, BlockBox boundingBox) {
     }
 
     private static final Identifier ID = new Identifier(SPMFools.FOOLS_ID, "elevator_altar");

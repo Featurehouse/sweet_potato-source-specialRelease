@@ -268,7 +268,7 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
         List<StatusEffectInstance> enchantmentList = new ObjectArrayList<>();
         WeightedList<StatusEffectInstance> weightedList = new WeightedList<>();
         WeightedStatusEffect.dump2weightedList(weightedList, WeightedStatusEffect.EFFECTS, withViceFuel());
-        if (weightedList.isEmpty()) {
+        if (weightedList.stream().count() == 0L) {
             LOGGER.warn("No effects can be applied: empty weighted list");
             return Collections.emptyList();
         }

@@ -153,8 +153,8 @@ public class MagicCubeScreenHandler extends ScreenHandler {
                 slot2 = this.slots.get(insIndex);
                 itemStack = slot2.getStack();
                 if (itemStack.isEmpty() && slot2.canInsert(stack)) {
-                    if (stack.getCount() > slot2.getMaxItemCount())
-                        slot2.setStack(stack.split(slot2.getMaxItemCount()));
+                    if (stack.getCount() > slot2.getMaxStackAmount())
+                        slot2.setStack(stack.split(slot2.getMaxStackAmount()));
                     else
                         slot2.setStack(stack.split(stack.getCount()));
                     slot2.markDirty();

@@ -6,10 +6,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.EntityDimensions;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.entity.*;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.entity.passive.PigEntity;
@@ -20,9 +17,9 @@ import net.minecraft.tag.Tag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import org.featurehouse.annotation.Diff16and17;
-import org.featurehouse.spm.blocks.ElevatorBlock;
 import org.featurehouse.spm.blocks.CrackedRockBlock;
 import org.featurehouse.spm.blocks.DeepDarkFantasyBlock;
+import org.featurehouse.spm.blocks.ElevatorBlock;
 import org.featurehouse.spm.blocks.MicrostoneBlock;
 import org.featurehouse.spm.blocks.entities.DeepDarkFantasyBlockEntity;
 import org.featurehouse.spm.entity.passive.GlintPigEntity;
@@ -38,7 +35,6 @@ import org.featurehouse.spm.util.properties.objects.BlockSettings;
 import org.featurehouse.spm.util.properties.objects.ItemSettings;
 import org.featurehouse.spm.util.properties.objects.Materials;
 import org.featurehouse.spm.world.event.WorldEvents;
-import org.featurehouse.spm.world.gen.ores.OreFeatures;
 
 import static org.featurehouse.spm.util.properties.objects.BlockSettings.functionalMinable;
 import static org.featurehouse.spm.util.registries.FoolsRegistryHelper.*;
@@ -96,7 +92,7 @@ public class SPMFools implements ModInitializer {
     @Override
     public void onInitialize() {
         ItemInteractions.init();
-        OreFeatures.load();
+        //OreFeatures.load();
         WorldEvents.init();
         Structures.init();
     }

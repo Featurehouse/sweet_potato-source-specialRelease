@@ -24,7 +24,6 @@ import net.minecraft.stat.Stats;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.FeatureConfig;
@@ -127,9 +126,8 @@ public interface FoolsRegistryHelper extends RegistryHelper {
 
     static Identifier stat(String id) { return stat(id, StatFormatter.DEFAULT); }
 
-    static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> configuredFeature(String id, ConfiguredFeature<FC, ?> configuredFeature) {
-        Identifier id2 = id(id);
-        return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, id2, configuredFeature);
+    static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> configuredFeature(@Deprecated String id, ConfiguredFeature<FC, ?> configuredFeature) {
+        return configuredFeature;
     }
 
     static StatusEffect statusEffect(String id, StatusEffectType type, int color) {

@@ -11,12 +11,12 @@ public class MagicCubeInputSlot extends Slot {
     }
 
     @Override
-    public int getMaxItemCount() {
+    public int getMaxStackAmount() {
         return 1;
     }
 
     @Override
-    public int getMaxItemCount(ItemStack stack) {
+    public int getMaxStackAmount(ItemStack stack) {
         return 1;
     }
 

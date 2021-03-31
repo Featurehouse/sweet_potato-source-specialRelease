@@ -1,12 +1,12 @@
 package org.featurehouse.spm.items;
 
-import org.featurehouse.spm.util.registries.RegistryHelper;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Block;
 import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import org.featurehouse.spm.util.registries.RegistryHelper;
 
 public class AliasedEnchantedItem extends AliasedBlockItem {
     public AliasedEnchantedItem(Block block, Settings settings) {

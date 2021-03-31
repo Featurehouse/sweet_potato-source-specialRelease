@@ -1,6 +1,5 @@
 package org.featurehouse.spm.mixin;
 
-import org.featurehouse.spm.SPMMain;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -8,11 +7,12 @@ import net.minecraft.client.gui.screen.CreditsScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.resource.Resource;
 import net.minecraft.text.LiteralText;
-import net.minecraft.text.OrderedText;
+import net.minecraft.text.StringRenderable;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
+import org.featurehouse.spm.SPMMain;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -29,8 +29,8 @@ import java.util.List;
 @Environment(EnvType.CLIENT)
 @Mixin(CreditsScreen.class)
 public class CreditsScreenMixin extends Screen {
-    @Shadow private IntSet centeredLines;
-    @Shadow private List<OrderedText> credits;
+    @Shadow private IntSet field_24261;
+    @Shadow private List<StringRenderable> credits;
     @Shadow @Final private static Logger LOGGER;
     @Shadow private int creditsHeight;
 
@@ -68,13 +68,13 @@ public class CreditsScreenMixin extends Screen {
                     centre = true;
                 }
 
-                List<OrderedText> oneLineSplit = this.client.textRenderer.wrapLines(new LiteralText(string10086), 274);
+                List<StringRenderable> oneLineSplit = this.client.textRenderer.wrapLines(new LiteralText(string10086), 274);
 
-                for (OrderedText orderedText1 : oneLineSplit) {
-                    if (centre) this.centeredLines.add(this.credits.size());
+                for (StringRenderable orderedText1 : oneLineSplit) {
+                    if (centre) this.field_24261.add(this.credits.size());
                     this.credits.add(orderedText1);
                 }
-                this.credits.add(OrderedText.EMPTY);
+                this.credits.add(StringRenderable.EMPTY);
             } inputStream1.close();
 
             this.creditsHeight = this.credits.size() * 12;

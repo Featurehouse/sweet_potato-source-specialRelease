@@ -7,6 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.RecipeUnlocker;
 import net.minecraft.screen.ForgingScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.LiteralText;
@@ -34,7 +35,7 @@ public class SeedUpdaterScreenHandler extends ForgingScreenHandler {
     public SeedUpdaterScreenHandler(int syncId, PlayerInventory inventory, ScreenHandlerContext context) {
         super(SPMMain.SEED_UPDATER_SCREEN_HANDLER_TYPE, syncId, inventory, context);
         this.world = inventory.player.world;
-        this.list = this.world.getRecipeManager().listAllOfType(SPMMain.SEED_UPDATING_RECIPE_TYPE);
+        this.list = this.world.getRecipeManager().method_30027(SPMMain.SEED_UPDATING_RECIPE_TYPE);
     }
 
     protected boolean canUse(@NotNull BlockState state) {
@@ -55,7 +56,7 @@ public class SeedUpdaterScreenHandler extends ForgingScreenHandler {
         else {
             this.recipe = list1.get(0);
             ItemStack itemStack = this.recipe.craft(this.input);
-            this.output.setLastRecipe(recipe);
+            ((RecipeUnlocker)this.output).setLastRecipe(recipe);
             this.output.setStack(0, itemStack);
         }
     }
@@ -68,7 +69,7 @@ public class SeedUpdaterScreenHandler extends ForgingScreenHandler {
     @Override
     protected ItemStack onTakeOutput(PlayerEntity player, @NotNull ItemStack stack) {
         //stack.onCraft(player.world, player, stack.getCount());
-        this.output.unlockLastRecipe(player);
+        ((RecipeUnlocker) this.output).unlockLastRecipe(player);
         this.putStack(0);   // method_29539
         this.putStack(1);
         //output.markDirty();

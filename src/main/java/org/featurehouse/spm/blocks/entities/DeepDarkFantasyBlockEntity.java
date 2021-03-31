@@ -4,6 +4,7 @@ import bilibili.ywsuoyi.block.AbstractLockableContainerBlockEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -23,6 +24,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.explosion.DefaultExplosionBehavior;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
 import org.featurehouse.spm.SPMFools;
@@ -33,6 +35,7 @@ import org.featurehouse.spm.util.properties.fantasy.IntDeepDarkFantasyProperties
 import org.featurehouse.spm.util.properties.state.BooleanStateManager;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.Random;
 import java.util.function.DoubleSupplier;
 
@@ -156,6 +159,11 @@ public class DeepDarkFantasyBlockEntity extends AbstractLockableContainerBlockEn
             if (!world.isClient) {
                 Vec3d vec3d = Vec3d.ofCenter(pos);
                 world.createExplosion(null, GrinderExplodeDamageSource.of(), new ExplosionBehavior() {
+                            @Override
+                            public Optional<Float> getBlastResistance(Explosion explosion, BlockView world, BlockPos pos, BlockState blockState, FluidState fluidState) {
+                                return DefaultExplosionBehavior.INSTANCE.getBlastResistance(explosion, world, pos, blockState, fluidState);
+                            }
+
                             @Override
                             public boolean canDestroyBlock(Explosion explosion, BlockView world, BlockPos pos, BlockState state, float power) {
                                 return false;

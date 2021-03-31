@@ -32,6 +32,13 @@ dependencies {
 
 	modImplementation "xyz.shurlin:shurlin:${project.shurlin_version}"
 
+	modImplementation "net.fabricmc.fabric-api:fabric-networking-api-v1:1.0.1+ca58154a7d"
+	include "net.fabricmc.fabric-api:fabric-networking-api-v1:1.0.1+ca58154a7d"
+	modImplementation "net.fabricmc.fabric-api:fabric-item-api-v1:1.2.1+ca58154a7d"
+	include "net.fabricmc.fabric-api:fabric-item-api-v1:1.2.1+ca58154a7d"
+	modImplementation "net.fabricmc.fabric-api:fabric-object-builder-api-v1:1.9.4+9354966b7d"
+	include "net.fabricmc.fabric-api:fabric-object-builder-api-v1:1.9.4+9354966b7d"
+
 	// PSA: Some older mods, compiled on Loom 0.2.1, might have outdated Maven POMs.
 	// You may need to force-disable transitiveness on them.
 }

@@ -1,11 +1,13 @@
 package org.featurehouse.spm.blocks.entities;
 
 import bilibili.ywsuoyi.block.AbstractLockableContainerBlockEntity;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.network.MessageType;
 import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.explosion.DefaultExplosionBehavior;
 import org.featurehouse.annotation.HardCoded;
 import org.featurehouse.annotation.NonMinecraftNorFabric;
 import org.featurehouse.spm.SPMMain;
@@ -38,6 +40,7 @@ import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
 import java.util.Random;
 import java.util.function.DoubleSupplier;
 
@@ -250,6 +253,11 @@ public class GrinderBlockEntity extends AbstractLockableContainerBlockEntity imp
             if (!world.isClient) {
                 Vec3d vec3d = Vec3d.ofCenter(pos);
                 world.createExplosion(null, GrinderExplodeDamageSource.of(), new ExplosionBehavior() {
+                            @Override
+                            public Optional<Float> getBlastResistance(Explosion explosion, BlockView world, BlockPos pos, BlockState blockState, FluidState fluidState) {
+                                return DefaultExplosionBehavior.INSTANCE.getBlastResistance(explosion, world, pos, blockState, fluidState);
+                            }
+
                             @Override
                             public boolean canDestroyBlock(Explosion explosion, BlockView world, BlockPos pos, BlockState state, float power) {
                                 return false;
