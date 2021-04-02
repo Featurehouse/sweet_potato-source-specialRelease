@@ -5,6 +5,8 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,11 +22,12 @@ import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.featurehouse.spm.util.tick.ITickable;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class AbstractBlockWithEntity extends BlockWithEntity {
+public abstract class AbstractBlockWithEntity<E extends BlockEntity & ITickable> extends BlockWithEntity {
     protected abstract boolean blockEntityPredicate(BlockEntity blockEntity);
 
     protected AbstractBlockWithEntity(Settings settings) {
@@ -34,6 +37,16 @@ public abstract class AbstractBlockWithEntity extends BlockWithEntity {
     public List<Identifier> incrementWhileOnUse(BlockState state, World world, BlockPos pos, ServerPlayerEntity serverPlayerEntity, Hand hand, BlockHitResult blockHitResult) {
         return ImmutableList.of();
     }
+
+    @Override
+    public abstract E createBlockEntity(BlockPos pos, BlockState state);
+
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        return world.isClient ? null : checkType(type, getBlockEntityType(), (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
+    }
+
+    protected abstract BlockEntityType<E> getBlockEntityType();
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {

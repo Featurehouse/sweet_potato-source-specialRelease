@@ -4,11 +4,13 @@ import bilibili.ywsuoyi.block.AbstractBlockWithEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.state.StateManager;
-import net.minecraft.world.BlockView;
+import net.minecraft.util.math.BlockPos;
+import org.featurehouse.spm.SPMFools;
 import org.featurehouse.spm.blocks.entities.DeepDarkFantasyBlockEntity;
 
-public class DeepDarkFantasyBlock extends AbstractBlockWithEntity {
+public class DeepDarkFantasyBlock extends AbstractBlockWithEntity<DeepDarkFantasyBlockEntity> {
     public DeepDarkFantasyBlock(Settings settings) {
         super(settings);
         setDefaultState(this.getStateManager().getDefaultState().with(GrinderBlock.GRINDING, false));
@@ -20,8 +22,13 @@ public class DeepDarkFantasyBlock extends AbstractBlockWithEntity {
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new DeepDarkFantasyBlockEntity();
+    public DeepDarkFantasyBlockEntity createBlockEntity(BlockPos a, BlockState b) {
+        return new DeepDarkFantasyBlockEntity(a, b);
+    }
+
+    @Override
+    protected BlockEntityType<DeepDarkFantasyBlockEntity> getBlockEntityType() {
+        return SPMFools.DEEP_DARK_FANTASY_BLOCK_ENTITY_TYPE;
     }
 
     @Override

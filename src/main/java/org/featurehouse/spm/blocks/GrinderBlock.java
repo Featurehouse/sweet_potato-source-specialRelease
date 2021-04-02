@@ -2,6 +2,7 @@ package org.featurehouse.spm.blocks;
 
 import bilibili.ywsuoyi.block.AbstractBlockWithEntity;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.block.entity.BlockEntityType;
 import org.featurehouse.spm.SPMMain;
 import org.featurehouse.spm.blocks.entities.GrinderBlockEntity;
 import net.minecraft.block.AbstractBlock;
@@ -15,12 +16,11 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class GrinderBlock extends AbstractBlockWithEntity {
+public class GrinderBlock extends AbstractBlockWithEntity<GrinderBlockEntity> {
     public static BooleanProperty GRINDING = BooleanProperty.of("grinding");
 
     public GrinderBlock(AbstractBlock.Settings settings) {
@@ -34,8 +34,13 @@ public class GrinderBlock extends AbstractBlockWithEntity {
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new GrinderBlockEntity();
+    public GrinderBlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new GrinderBlockEntity(pos, state);
+    }
+
+    @Override
+    protected BlockEntityType<GrinderBlockEntity> getBlockEntityType() {
+        return SPMMain.GRINDER_BLOCK_ENTITY_TYPE;
     }
 
     @Override

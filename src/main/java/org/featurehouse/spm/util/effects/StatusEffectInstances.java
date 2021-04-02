@@ -3,7 +3,7 @@ package org.featurehouse.spm.util.effects;
 import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +17,7 @@ public class StatusEffectInstances {
      * For Enchanted Sweet Potatoes only. Not compatible with ordinal ones.
      */
     @Nullable   // null: empty status
-    public static StatusEffectInstance readNbt(CompoundTag tag) {
+    public static StatusEffectInstance readNbt(NbtCompound tag) {
         if (!tag.contains("id", NbtType.STRING)) return null;
         String raw = tag.getString("id");
         Identifier id = new Identifier(raw);
@@ -32,8 +32,8 @@ public class StatusEffectInstances {
     /**
      * For Enchanted Sweet Potatoes only. Not compatible with ordinal ones.
      */
-    public static CompoundTag writeNbt(StatusEffectInstance effect) {
-        CompoundTag tag = new CompoundTag();
+    public static NbtCompound writeNbt(StatusEffectInstance effect) {
+        NbtCompound tag = new NbtCompound();
         StatusEffect statusEffect = effect.getEffectType();
         if (Registry.STATUS_EFFECT.stream().noneMatch(statusEffect1 -> statusEffect1 == statusEffect)) {
             LOGGER.error("Cannot write status effect: {}", statusEffect.getName());

@@ -2,6 +2,7 @@ package org.featurehouse.spm.blocks;
 
 import bilibili.ywsuoyi.block.AbstractBlockWithEntity;
 import com.google.common.collect.ImmutableList;
+import net.minecraft.block.entity.BlockEntityType;
 import org.featurehouse.spm.SPMMain;
 import org.featurehouse.spm.blocks.entities.MagicCubeBlockEntity;
 import net.fabricmc.api.EnvType;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.BiPredicate;
 
-public class MagicCubeBlock extends AbstractBlockWithEntity {
+public class MagicCubeBlock extends AbstractBlockWithEntity<MagicCubeBlockEntity> {
     public static BooleanProperty ACTIVATED = BooleanProperty.of("activated");
     public static final BiPredicate<World, BlockPos> ACTIVATION_PREDICATE = (world, blockPos) -> {
         BlockState state = world.getBlockState(blockPos);
@@ -77,8 +78,13 @@ public class MagicCubeBlock extends AbstractBlockWithEntity {
     }
 
     @Override
-    public BlockEntity createBlockEntity(BlockView world) {
-        return new MagicCubeBlockEntity();
+    public MagicCubeBlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new MagicCubeBlockEntity(pos, state);
+    }
+
+    @Override
+    protected BlockEntityType<MagicCubeBlockEntity> getBlockEntityType() {
+        return SPMMain.MAGIC_CUBE_BLOCK_ENTITY_TYPE;
     }
 
     @Environment(EnvType.CLIENT) @Deprecated //@Override

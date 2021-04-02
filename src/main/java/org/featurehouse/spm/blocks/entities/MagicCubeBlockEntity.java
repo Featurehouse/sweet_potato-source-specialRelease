@@ -1,6 +1,7 @@
 package org.featurehouse.spm.blocks.entities;
 
 import bilibili.ywsuoyi.block.AbstractLockableContainerBlockEntity;
+import net.minecraft.world.World;
 import org.featurehouse.spm.SPMMain;
 import org.featurehouse.spm.blocks.MagicCubeBlock;
 import org.featurehouse.spm.items.RawSweetPotatoBlockItem;
@@ -20,20 +21,20 @@ import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Tickable;
-import net.minecraft.util.collection.WeightedList;
+import net.minecraft.util.collection.WeightedPicker;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.featurehouse.spm.util.tick.ITickable;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
@@ -42,7 +43,7 @@ import java.util.Random;
 
 import static net.minecraft.block.Blocks.SOUL_FIRE;
 
-public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity implements Tickable, SidedInventory, ExtendedScreenHandlerFactory {
+public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity implements SidedInventory, ExtendedScreenHandlerFactory, ITickable {
     private static final Logger LOGGER = LogManager.getLogger();
 
     //protected StateHelperV1 stateHelper;
@@ -60,12 +61,12 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
 
     protected IntMagicCubeProperties propertyDelegate;
 
-    public MagicCubeBlockEntity() {
-        this(SPMMain.MAGIC_CUBE_BLOCK_ENTITY_TYPE, 8);
+    public MagicCubeBlockEntity(BlockPos pos, BlockState state) {
+        this(SPMMain.MAGIC_CUBE_BLOCK_ENTITY_TYPE, pos, state, 8);
     }
 
-    public MagicCubeBlockEntity(BlockEntityType<?> type, int size) {
-        super(type, size);
+    public MagicCubeBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state, int size) {
+        super(type, pos, state, size);
         this.propertyDelegate = new IntMagicCubeProperties() {
             @Override
             public short getMainFuelTime() {
@@ -154,8 +155,8 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
     }
 
     @Override
-    public void tick() {
-        assert this.world != null;
+    public void tick(World world, BlockPos pos, BlockState state) {
+        assert world != null;
         boolean shallMarkDirty = false;
 
         if (!world.isClient) {
@@ -170,7 +171,7 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
                 if (this.inventory.get(6).getItem() == SPMMain.PEEL) {
                     boolean bl = false;
                     for (int i = 0; i < 3; ++i) {
-                        if (this.inventory.get(i).getItem().isIn(SPMMain.RAW_SWEET_POTATOES)) {
+                        if (SPMMain.RAW_SWEET_POTATOES.contains(this.inventory.get(i).getItem())) {
                             this.mainFuelTime = 200;
                             bl = true;
                             break;
@@ -232,7 +233,7 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
         } else if (random.nextDouble() <= (withViceFuel() ? 0.5D : 0.4D)) {
             // GENE-WORK
             List<ItemConvertible> itemSet = new ObjectArrayList<>(2);
-            if (item instanceof RawSweetPotatoBlockItem && item.isIn(SPMMain.RAW_SWEET_POTATOES)) {
+            if (item instanceof RawSweetPotatoBlockItem && SPMMain.RAW_SWEET_POTATOES.contains(item)) {
                 RawSweetPotatoBlockItem sweetPotato = (RawSweetPotatoBlockItem) item;
                 sweetPotato.asType().getOtherTwo().forEach(sweetPotatoType -> itemSet.add(sweetPotatoType.getRaw()));
                 this.setStack(outputIndex, new ItemStack(
@@ -245,18 +246,18 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
     }
 
     private ItemStack enchant(ItemStack originRaw) {
-        Item item;
-        if (!((item = originRaw.getItem()).isIn(SPMMain.RAW_SWEET_POTATOES)) || !(item instanceof RawSweetPotatoBlockItem))
+        Item item = originRaw.getItem();
+        if (!(SPMMain.RAW_SWEET_POTATOES.contains(item)) || !(item instanceof RawSweetPotatoBlockItem))
             return originRaw;
         RawSweetPotatoBlockItem sweetPotato = (RawSweetPotatoBlockItem) item;
-        CompoundTag tag = new CompoundTag();
-        ListTag listTag = new ListTag();
+        NbtCompound tag = new NbtCompound();
+        NbtList NbtList = new NbtList();
         List<StatusEffectInstance> enchantments = calcEnchantments();
-        enchantments.forEach(statusEffectInstance -> listTag.add(StatusEffectInstances.writeNbt(statusEffectInstance)));
+        enchantments.forEach(statusEffectInstance -> NbtList.add(StatusEffectInstances.writeNbt(statusEffectInstance)));
         int length = enchantments.size();
         //short randomIndex = (short) (this.world.random.nextDouble() * length);
         short randomIndex = (short) (length == 0 ? -1 : random.nextInt(length));
-        tag.put("statusEffects", listTag);
+        tag.put("statusEffects", NbtList);
         tag.putShort("displayIndex", randomIndex);
         ItemStack outputStack = new ItemStack(sweetPotato.asType().getEnchanted(), originRaw.getCount());
         outputStack.setTag(tag);
@@ -266,14 +267,14 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
     private List<StatusEffectInstance> calcEnchantments() {
         //TODO
         List<StatusEffectInstance> enchantmentList = new ObjectArrayList<>();
-        WeightedList<StatusEffectInstance> weightedList = new WeightedList<>();
-        WeightedStatusEffect.dump2weightedList(weightedList, WeightedStatusEffect.EFFECTS, withViceFuel());
-        if (weightedList.isEmpty()) {
+        WeightedPicker WeightedPicker = new WeightedPicker();
+        WeightedStatusEffect.dump2WeightedPicker(WeightedPicker, WeightedStatusEffect.EFFECTS, withViceFuel());
+        if (WeightedPicker.isEmpty()) {
             LOGGER.warn("No effects can be applied: empty weighted list");
             return Collections.emptyList();
         }
         for (byte times = 0; times < 5; ++times) {
-            enchantmentList.add(weightedList.pickRandom(random));
+            enchantmentList.add(WeightedPicker.pickRandom(random));
             if (random.nextBoolean()) break;
         }
         return enchantmentList;
@@ -298,14 +299,14 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
     }
 
     @Override
-    public void fromTag(BlockState state, CompoundTag tag) {
+    public void fromTag(BlockState state, NbtCompound tag) {
         super.fromTag(state, tag);
         this.mainFuelTime = tag.getShort("EnergyTime");
         this.viceFuelTime = tag.getShort("SublimateTime");
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
+    public NbtCompound toTag(NbtCompound tag) {
         super.toTag(tag);
         tag.putShort("EnergyTime", this.mainFuelTime);
         tag.putShort("SublimateTime", this.viceFuelTime);

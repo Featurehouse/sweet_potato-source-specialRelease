@@ -8,7 +8,7 @@ import net.minecraft.inventory.SidedInventory;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.MessageType;
 import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
 import net.minecraft.particle.ParticleTypes;
@@ -17,12 +17,12 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.Tickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import net.minecraft.world.explosion.ExplosionBehavior;
 import org.featurehouse.spm.SPMFools;
@@ -31,6 +31,7 @@ import org.featurehouse.spm.entity.damage.GrinderExplodeDamageSource;
 import org.featurehouse.spm.screen.DeepDarkFantasyScreenHandler;
 import org.featurehouse.spm.util.properties.fantasy.IntDeepDarkFantasyProperties;
 import org.featurehouse.spm.util.properties.state.BooleanStateManager;
+import org.featurehouse.spm.util.tick.ITickable;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
@@ -39,7 +40,7 @@ import java.util.function.DoubleSupplier;
 /**
  * Still in dev
  */
-public class DeepDarkFantasyBlockEntity extends AbstractLockableContainerBlockEntity implements Tickable, SidedInventory {
+public class DeepDarkFantasyBlockEntity extends AbstractLockableContainerBlockEntity implements SidedInventory, ITickable {
     public final IntDeepDarkFantasyProperties properties;
     private final BooleanStateManager stateManager;
 
@@ -53,8 +54,8 @@ public class DeepDarkFantasyBlockEntity extends AbstractLockableContainerBlockEn
     private static final int SUBLIMATE_INGREDIENT_DATA = 64;
     private byte absorbCooldown = 0;
 
-    public DeepDarkFantasyBlockEntity() {
-        super(SPMFools.DEEP_DARK_FANTASY_BLOCK_ENTITY_TYPE, 3);
+    public DeepDarkFantasyBlockEntity(BlockPos pos, BlockState state) {
+        super(SPMFools.DEEP_DARK_FANTASY_BLOCK_ENTITY_TYPE, pos, state, 3);
         properties = new IntDeepDarkFantasyProperties() {
             @Override
             public int getIngredientData() {
@@ -111,7 +112,7 @@ public class DeepDarkFantasyBlockEntity extends AbstractLockableContainerBlockEn
     }
 
     @Override
-    public void tick() {
+    public void tick(World world, BlockPos pos, BlockState state) {
         assert world != null;
         boolean shallMarkDirty = false;
 
@@ -195,16 +196,16 @@ public class DeepDarkFantasyBlockEntity extends AbstractLockableContainerBlockEn
     }
 
     @Override
-    public void fromTag(BlockState state, CompoundTag tag) {
-        super.fromTag(state, tag);
+    public void readNbt( NbtCompound tag) {
+        super.readNbt(tag);
         this.sublimateTime = tag.getShort("SublimateTime");
         this.ingredientData = tag.getInt("IngredientData");
         this.absorbCooldown = tag.getByte("absorbCooldown");
     }
 
     @Override
-    public CompoundTag toTag(CompoundTag tag) {
-        super.toTag(tag);
+    public NbtCompound writeNbt(NbtCompound tag) {
+        super.writeNbt(tag);
         tag.putShort("SublimateTime", sublimateTime);
         tag.putInt("IngredientData", ingredientData);
         tag.putByte("absorbCooldown", absorbCooldown);
