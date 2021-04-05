@@ -4,10 +4,10 @@
 	  "item": "spmfools21:microstone"
 	},
 	"title": {
-	  "translate": "advancments.spmfools21.root.title"
+	  "translate": "advancements.spmfools21.root.title"
 	},
 	"description": {
-	  "translate": "advancments.spmfools21.root.desc"
+	  "translate": "advancements.spmfools21.root.desc"
 	},
 	"frame": "task",
 	"show_toast": false,

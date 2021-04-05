@@ -1,8 +1,10 @@
 package org.featurehouse.spm;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.object.builder.v1.advancement.CriterionRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
@@ -20,6 +22,7 @@ import net.minecraft.tag.Tag;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import org.featurehouse.annotation.Diff16and17;
+import org.featurehouse.spm.advancement.BugjumpCriterion;
 import org.featurehouse.spm.blocks.ElevatorBlock;
 import org.featurehouse.spm.blocks.CrackedRockBlock;
 import org.featurehouse.spm.blocks.DeepDarkFantasyBlock;
@@ -93,19 +96,23 @@ public class SPMFools implements ModInitializer {
 
     public static final BlockPos GLINT_PIG_POS_CENTER = new BlockPos(0, 13, 1);
 
+    public static final BugjumpCriterion BUGJUMP_CRITERION = CriterionRegistry.register(new BugjumpCriterion(id("bugjump")));
+
     @Override
     public void onInitialize() {
         ItemInteractions.init();
         OreFeatures.load();
         WorldEvents.init();
         Structures.init();
+
+        CriterionRegistry.register(NullPointerExceptionItem.Companion.getCriterion());
     }
 
     static {
         CURSEFORGE_BLOCK = defaultBlock("curseforge_block", FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
-        CURSEFORGE_ORE = defaultBlock("curseforge_ore", FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE));
+        CURSEFORGE_ORE = defaultBlock("curseforge_ore", FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).breakByTool(FabricToolTags.PICKAXES, 2));
         // $DEEPSLATE_CURSEFORGE_ORE: deepslate settings copyOf in 1.17
-        DEEPSLATE_CURSEFORGE_ORE = defaultBlock("deepslate_curseforge_ore", FabricBlockSettings.copyOf(/* 1.17: Blocks.DEEPSLATE_DIAMOND_ORE */ Blocks.DIAMOND_ORE));
+        DEEPSLATE_CURSEFORGE_ORE = defaultBlock("deepslate_curseforge_ore", FabricBlockSettings.copyOf(/* 1.17: Blocks.DEEPSLATE_DIAMOND_ORE */ Blocks.DIAMOND_ORE).breakByTool(FabricToolTags.PICKAXES, 2));
         CRACKED_ROCK = (CrackedRockBlock) block("cracked_rock", new CrackedRockBlock(FabricBlockSettings.copyOf(Blocks.STONE)));
         MICROSTONE = block("microstone", new MicrostoneBlock(BlockSettings.MICROSTONE));
         DEEP_DARK_FANTASY = block("deep_dark_fantasy", new DeepDarkFantasyBlock(functionalMinable(Materials.MATERIAL_STONE, 3.5F, 6.0F, 0)));

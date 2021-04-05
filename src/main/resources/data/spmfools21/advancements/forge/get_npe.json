@@ -9,10 +9,10 @@
     "announce_to_chat": true,
     "hidden": false,
 	"title": {
-      "translate": "advancement.spmfools21.get_npe.title"
+      "translate": "advancements.spmfools21.get_npe.title"
     },
     "description": {
-      "translate": "advancement.spmfools21.get_npe.desc"
+      "translate": "advancements.spmfools21.get_npe.desc"
     }
   },
   "parent": "spmfools21:forge/get_hammer",

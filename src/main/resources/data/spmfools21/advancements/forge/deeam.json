@@ -8,10 +8,10 @@
     "announce_to_chat": true,
     "hidden": false,
 	"title": {
-      "translate": "advancement.spmfools21.deeam.title"
+      "translate": "advancements.spmfools21.deeam.title"
     },
     "description": {
-      "translate": "advancement.spmfools21.deeam.desc"
+      "translate": "advancements.spmfools21.deeam.desc"
     }
   },
   "parent": "spmfools21:forge/get_ddf",
