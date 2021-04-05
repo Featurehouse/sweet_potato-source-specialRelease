@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.object.builder.v1.advancement.CriterionRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
@@ -108,10 +109,10 @@ public class SPMFools implements ModInitializer {
     }
 
     static {
-        CURSEFORGE_BLOCK = defaultBlock("curseforge_block", FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
-        CURSEFORGE_ORE = defaultBlock("curseforge_ore", FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE));
+        CURSEFORGE_BLOCK = defaultBlock("curseforge_block", FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK).breakByTool(FabricToolTags.PICKAXES, 2));
+        CURSEFORGE_ORE = defaultBlock("curseforge_ore", FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).breakByTool(FabricToolTags.PICKAXES, 2));
         // $DEEPSLATE_CURSEFORGE_ORE: deepslate settings copyOf in 1.17
-        DEEPSLATE_CURSEFORGE_ORE = defaultBlock("deepslate_curseforge_ore", FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE));
+        DEEPSLATE_CURSEFORGE_ORE = defaultBlock("deepslate_curseforge_ore", FabricBlockSettings.copyOf(Blocks.DEEPSLATE_DIAMOND_ORE).breakByTool(FabricToolTags.PICKAXES, 2));
         CRACKED_ROCK = (CrackedRockBlock) block("cracked_rock", new CrackedRockBlock(FabricBlockSettings.copyOf(Blocks.STONE)));
         MICROSTONE = block("microstone", new MicrostoneBlock(BlockSettings.MICROSTONE));
         DEEP_DARK_FANTASY = block("deep_dark_fantasy", new DeepDarkFantasyBlock(functionalMinable(Materials.MATERIAL_STONE, 3.5F, 6.0F, 0)));
