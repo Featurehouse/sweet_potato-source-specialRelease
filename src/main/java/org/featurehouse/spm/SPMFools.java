@@ -109,7 +109,7 @@ public class SPMFools implements ModInitializer {
     }
 
     static {
-        CURSEFORGE_BLOCK = defaultBlock("curseforge_block", FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK));
+        CURSEFORGE_BLOCK = defaultBlock("curseforge_block", FabricBlockSettings.copyOf(Blocks.DIAMOND_BLOCK).breakByTool(FabricToolTags.PICKAXES, 2));
         CURSEFORGE_ORE = defaultBlock("curseforge_ore", FabricBlockSettings.copyOf(Blocks.DIAMOND_ORE).breakByTool(FabricToolTags.PICKAXES, 2));
         // $DEEPSLATE_CURSEFORGE_ORE: deepslate settings copyOf in 1.17
         DEEPSLATE_CURSEFORGE_ORE = defaultBlock("deepslate_curseforge_ore", FabricBlockSettings.copyOf(/* 1.17: Blocks.DEEPSLATE_DIAMOND_ORE */ Blocks.DIAMOND_ORE).breakByTool(FabricToolTags.PICKAXES, 2));
