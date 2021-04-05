@@ -28,7 +28,7 @@ public class BakedSweetPotatoItem extends Item implements WithStatus {
         if (user instanceof PlayerEntity) {
             PlayerEntity playerEntity = (PlayerEntity) user;
             playerEntity.incrementStat(SPMMain.SWEET_POTATO_EATEN);
-            if (!((PlayerEntity) user).abilities.creativeMode)
+            if (!((PlayerEntity) user).getAbilities().creativeMode)
                 PeelInserter.run(playerEntity);
         }
 

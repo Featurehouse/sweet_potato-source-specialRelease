@@ -9,6 +9,7 @@ import net.minecraft.util.math.Vec3d
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import org.featurehouse.spm.SPMFools
+import org.featurehouse.spm.util.handleFallDamage
 
 /**
  * @see net.minecraft.block.SlimeBlock

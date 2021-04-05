@@ -8,10 +8,10 @@
     "announce_to_chat": true,
     "hidden": true,
 	"title": {
-      "translate": "advancement.spmfools21.kotlin.title"
+      "translate": "advancements.spmfools21.kotlin.title"
     },
     "description": {
-      "translate": "advancement.spmfools21.kotlin.desc"
+      "translate": "advancements.spmfools21.kotlin.desc"
     }
   },
   "parent": "spmfools21:forge/get_npe",

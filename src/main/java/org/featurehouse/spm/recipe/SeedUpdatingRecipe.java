@@ -6,7 +6,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
 import net.minecraft.util.Identifier;
@@ -36,7 +36,7 @@ public class SeedUpdatingRecipe implements Recipe<Inventory> {
     @Override
     public ItemStack craft(Inventory inv) {
         ItemStack itemStack = this.result.copy();
-        CompoundTag compoundTag = inv.getStack(0).getTag();
+        NbtCompound compoundTag = inv.getStack(0).getTag();
         if (compoundTag != null) {
             itemStack.setTag(compoundTag.copy());
         }
@@ -80,15 +80,15 @@ public class SeedUpdatingRecipe implements Recipe<Inventory> {
 
     public static class Serializer extends AbstractRecipeSerializer<SeedUpdatingRecipe> {
 
-        //@Override
+        @Override
         public SeedUpdatingRecipe read(Identifier identifier, JsonObject jsonObject) {
             Ingredient ingredient = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "base"));
             Ingredient ingredient2 = Ingredient.fromJson(JsonHelper.getObject(jsonObject, "addition"));
-            ItemStack itemStack = ShapedRecipe.getItemStack(JsonHelper.getObject(jsonObject, "result"));
+            ItemStack itemStack = ShapedRecipe.method_35228(JsonHelper.getObject(jsonObject, "result"));
             return new SeedUpdatingRecipe(identifier, ingredient, ingredient2, itemStack);
         }
 
-        //@Override
+        @Override
         public SeedUpdatingRecipe read(Identifier identifier, PacketByteBuf packetByteBuf) {
             Ingredient ingredient = Ingredient.fromPacket(packetByteBuf);
             Ingredient ingredient2 = Ingredient.fromPacket(packetByteBuf);
@@ -96,7 +96,7 @@ public class SeedUpdatingRecipe implements Recipe<Inventory> {
             return new SeedUpdatingRecipe(identifier, ingredient, ingredient2, itemStack);
         }
 
-        //@Override
+        @Override
         public void write(PacketByteBuf buf, @NotNull SeedUpdatingRecipe recipe) {
             recipe.base.write(buf);
             recipe.addition.write(buf);

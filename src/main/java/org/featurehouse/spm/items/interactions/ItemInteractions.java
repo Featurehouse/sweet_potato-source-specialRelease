@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseEntityCallback;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.HorseBaseEntity;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextParameters;
 import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.Vec3d;
@@ -78,16 +79,16 @@ public class ItemInteractions {
                 ItemStack originBucket = playerEntity.getStackInHand(hand);
                 if (originBucket.getItem() == Items.BUCKET) {
                     entity.removeAllPassengers();
-                    CompoundTag tag = new CompoundTag();
-                    entity.saveSelfToTag(tag);
+                    NbtCompound tag = new NbtCompound();
+                    entity.saveSelfNbt(tag);
                     tag.remove("Pos");
                     tag.remove("UUID");
-                    entity.remove();
-                    if (!playerEntity.abilities.creativeMode)
+                    entity.remove(Entity.RemovalReason.DISCARDED);
+                    if (!playerEntity.getAbilities().creativeMode)
                         originBucket.decrement(1);
                     ItemStack horseBucket = new ItemStack(SPMFools.HORSE_BUCKET);
                     horseBucket.getOrCreateTag().put("EntityTag", tag);
-                    if (!playerEntity.inventory.insertStack(horseBucket))
+                    if (!playerEntity.getInventory().insertStack(horseBucket))
                         playerEntity.dropItem(horseBucket, true);
                     return ActionResult.CONSUME;
                 }

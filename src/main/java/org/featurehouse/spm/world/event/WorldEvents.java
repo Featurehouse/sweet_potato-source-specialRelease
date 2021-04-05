@@ -1,5 +1,6 @@
 package org.featurehouse.spm.world.event;
 
+import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerWorldEvents;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;

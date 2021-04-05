@@ -15,6 +15,6 @@ private val START_POINT = BlockPos(-5, 12, -4)
 fun fillPigHell(serverWorld: ServerWorld) : Boolean {
     val structure: Structure = serverWorld.structureManager.getStructure(GLINT_PIG_HELL_ID) ?: return false
     val structurePlacementData = StructurePlacementData()
-    structure.place(serverWorld, START_POINT, structurePlacementData, serverWorld.random)
+    structure.place(serverWorld, START_POINT, START_POINT, structurePlacementData, serverWorld.random, 2)
     return true
 }

@@ -7,6 +7,10 @@
     "minecraft:diorite",
     "minecraft:andesite",
     "#sweet_potato:blackstones",
-    "minecraft:basalt"
+    "minecraft:basalt",
+    "minecraft:tuff",
+    "minecraft:calcite",
+    "minecraft:deepslate",
+    "minecraft:smooth_basalt"
   ]
 }

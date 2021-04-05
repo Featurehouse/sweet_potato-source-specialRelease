@@ -22,6 +22,6 @@ public class MagicCubeInputSlot extends Slot {
 
     @Override
     public boolean canInsert(ItemStack stack) {
-        return stack.getItem().isIn(SPMMain.RAW_SWEET_POTATOES);
+        return SPMMain.RAW_SWEET_POTATOES.contains(stack.getItem());
     }
 }

@@ -39,8 +39,7 @@ public class SPMFoolsClient implements ClientModInitializer {
 
         FabricModelPredicateProviderRegistry.register(SPMFools.NULLPOINTEREXCEPTION,
                 new Identifier(SPMFools.FOOLS_ID, "angle"), new NullPointerExceptionModelPredicateProvider());
-        EntityRendererRegistry.INSTANCE.register(SPMFools.GLINT_PIG,
-                (entityRenderDispatcher, context) -> new GlintPigEntityRenderer(entityRenderDispatcher));
+        EntityRendererRegistry.INSTANCE.register(SPMFools.GLINT_PIG, GlintPigEntityRenderer::new);
         ClientPlayNetworking.registerGlobalReceiver(NullPointerExceptionItem.Companion.getClientCrashAccept(),
                 (minecraftClient, clientPlayNetworkHandler, packetByteBuf, packetSender) -> minecraftClient.execute(() -> {
                     MinecraftClient.printCrashReport(new CrashReport("I TOLD YOU NOT TO RIGHT CLICK!", new NullPointerException("I TOLD YOU NOT TO RIGHT CLICK!")));

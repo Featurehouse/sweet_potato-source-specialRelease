@@ -6,8 +6,8 @@ import net.minecraft.entity.SpawnReason
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemUsageContext
-import net.minecraft.nbt.DoubleTag
-import net.minecraft.nbt.ListTag
+import net.minecraft.nbt.NbtDouble
+import net.minecraft.nbt.NbtList
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.sound.SoundCategory
 import net.minecraft.util.ActionResult
@@ -31,15 +31,15 @@ object HorseBucketItem : Item(ItemSettings.MISC_ONE) {
         }
 
         val blockPos:  BlockPos = context.blockPos
-        val blockPos2: BlockPos = blockPos.offset(context.side)
+        val blockPos2: BlockPos = blockPos.offset(context.side, 1)
         val compoundTag = context.stack.orCreateTag
         if (compoundTag.contains("EntityTag", NbtType.COMPOUND)) {
             val entityTag = compoundTag.getCompound("EntityTag")
             val id = Identifier(entityTag.getString("id"))
-            val listTag = ListTag()
-            listTag.add(DoubleTag.of(blockPos2.x + 0.5))
-            listTag.add(DoubleTag.of(blockPos2.y.toDouble() ))
-            listTag.add(DoubleTag.of(blockPos2.z + 0.5))
+            val listTag = NbtList()
+            listTag.add(NbtDouble.of(blockPos2.x + 0.5))
+            listTag.add(NbtDouble.of(blockPos2.y.toDouble() ))
+            listTag.add(NbtDouble.of(blockPos2.z + 0.5))
             entityTag.put("Pos", listTag)
             val entityType: EntityType<*> = Registry.ENTITY_TYPE[id]
             entityType.spawnFromItemStack(context.world as ServerWorld, context.stack, context.player, blockPos,

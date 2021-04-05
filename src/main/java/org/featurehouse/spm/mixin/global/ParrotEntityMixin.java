@@ -4,8 +4,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.passive.ParrotEntity;
 import net.minecraft.entity.passive.TameableShoulderEntity;
-import net.minecraft.item.Item;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.MessageType;
 import net.minecraft.network.packet.s2c.play.GameMessageS2CPacket;
 import net.minecraft.server.world.ServerWorld;
@@ -19,8 +18,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.util.Set;
 
 @Mixin(ParrotEntity.class)
 public abstract class ParrotEntityMixin extends TameableShoulderEntity implements Pigeon {
@@ -41,15 +38,15 @@ public abstract class ParrotEntityMixin extends TameableShoulderEntity implement
         super(entityType, world);
     }
 
-    @Inject(at = @At("RETURN"), method = "readCustomDataFromTag")
-    private void onReadNbt(CompoundTag root, CallbackInfo ci) {
-        CompoundTag compoundTag = root.getCompound("spmfools21:info");
+    @Inject(at = @At("RETURN"), method = "readCustomDataFromNbt")
+    private void onReadNbt(NbtCompound root, CallbackInfo ci) {
+        NbtCompound compoundTag = root.getCompound("spmfools21:info");
         spmfools21_isPigeon = compoundTag.getBoolean("IsPigeon");   // default false
     }
 
-    @Inject(at = @At("RETURN"), method = "writeCustomDataToTag")
-    private void onWriteNbt(CompoundTag root, CallbackInfo ci) {
-        CompoundTag compoundTag = new CompoundTag();
+    @Inject(at = @At("RETURN"), method = "writeCustomDataToNbt")
+    private void onWriteNbt(NbtCompound root, CallbackInfo ci) {
+        NbtCompound compoundTag = new NbtCompound();
         root.putBoolean("IsPigeon", spmfools21_isPigeon);
         root.put("spmfools21:info", compoundTag);
     }

@@ -25,9 +25,9 @@ public class GrinderScreen extends HandledScreen<GrinderScreenHandler> {
         RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         assert this.client != null;
         this.client.getTextureManager().bindTexture(TEXTURE);
-        this.drawTexture(matrices, this.x, this.y, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        this.drawTexture(matrices, this.width, this.height, 0, 0, this.backgroundWidth, this.backgroundHeight);
         int l = this.handler.getGrindProgress();
-        this.drawTexture(matrices, this.x + 73 //attention//, this.y + 34, 176, 14, l+1, 16);
+        this.drawTexture(matrices, this.width + 73 //attention//, this.height + 34, 176, 14, l+1, 16);
 
         this.drawTexture(matrices, 74, 35, 22, 67, 22, 16);
         this.drawTexture(matrices, 74, 35, 0, 67, this.handler.getGrindProgress(), 16);
@@ -48,10 +48,10 @@ public class GrinderScreen extends HandledScreen<GrinderScreenHandler> {
     public void drawBackground(MatrixStack matrices, float delta, int mouseX, int mouseY) {
         assert this.client != null;
         this.client.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
-        this.drawTexture(matrices, this.x, this.y, 0, 0, this.backgroundWidth, this.backgroundHeight);
+        this.drawTexture(matrices, this.width, this.height, 0, 0, this.backgroundWidth, this.backgroundHeight);
         //this.addProgressArrow(74, 35, 0);
         int l = this.handler.getGrindProgress();
-        this.drawTexture(matrices, this.x + 74, this.y + 35, 176, 0, l+1, 16);  // arrow
+        this.drawTexture(matrices, this.width + 74, this.height + 35, 176, 0, l+1, 16);  // arrow
         //super.drawBackground(matrices, delta, mouseX, mouseY);
     }
 

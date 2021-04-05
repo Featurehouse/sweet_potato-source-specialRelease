@@ -23,12 +23,12 @@ public final class BlockSettings {
     }
 
     public static FlowerPotBlock createPotted(String id, Block inside) {
-        return (FlowerPotBlock) RegistryHelper.block(id, new FlowerPotBlock(inside, FabricBlockSettings.of(Material.SUPPORTED)));
+        return (FlowerPotBlock) RegistryHelper.block(id, new FlowerPotBlock(inside, FabricBlockSettings.of(Material.DECORATION)));
     }
 
     public static final FabricBlockSettings GRASS_LIKE;
     public static final FabricBlockSettings GRASS;
-    public static final FabricBlockSettings MICROSTONE = FabricBlockSettings.of(Material.SUPPORTED).hardness(0.5F).breakByTool(FabricToolTags.PICKAXES, 0);
+    public static final FabricBlockSettings MICROSTONE = FabricBlockSettings.of(Material.DECORATION).hardness(0.5F).breakByTool(FabricToolTags.PICKAXES, 0);
 
     private BlockSettings() {}
 

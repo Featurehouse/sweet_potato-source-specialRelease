@@ -48,7 +48,7 @@ public class EnchantedSweetPotatoItem extends EnchantedItem implements WithStatu
         if (user instanceof PlayerEntity) {
             PlayerEntity playerEntity = (PlayerEntity) user;
             playerEntity.incrementStat(SPMMain.SWEET_POTATO_EATEN);
-            if (!((PlayerEntity) user).abilities.creativeMode)
+            if (!((PlayerEntity) user).getAbilities().creativeMode)
                 PeelInserter.run(playerEntity);
         }
 
@@ -69,14 +69,14 @@ public class EnchantedSweetPotatoItem extends EnchantedItem implements WithStatu
     protected static Optional<List<StatusEffectInstance>> calcEffect(ItemStack stack) {
         Item item = stack.getItem();
         if (!(item instanceof EnchantedSweetPotatoItem)) return Optional.empty();
-        CompoundTag compoundTag = stack.getOrCreateTag();
+        NbtCompound compoundTag = stack.getOrCreateTag();
         if (!compoundTag.contains("statusEffects", NbtType.LIST)) return Optional.empty();
-        ListTag statusEffects = compoundTag.getList("statusEffects", NbtType.COMPOUND);
+        NbtList statusEffects = compoundTag.getList("statusEffects", NbtType.COMPOUND);
 
         List<StatusEffectInstance> effectInstances = new ObjectArrayList<>();
-        for (Tag oneStatusEffect: statusEffects) {
+        for (NbtElement oneStatusEffect: statusEffects) {
             if (NbtUtils.notCompoundTag(oneStatusEffect)) continue;
-            CompoundTag compoundTag1 = (CompoundTag) oneStatusEffect;
+            NbtCompound compoundTag1 = (NbtCompound) oneStatusEffect;
             StatusEffectInstance statusEffectInstance = StatusEffectInstances.readNbt(compoundTag1);
             if (statusEffectInstance == null) continue;
             effectInstances.add(statusEffectInstance);
@@ -107,7 +107,7 @@ public class EnchantedSweetPotatoItem extends EnchantedItem implements WithStatu
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
 
-        CompoundTag root = stack.getOrCreateTag();
+        NbtCompound root = stack.getOrCreateTag();
         BaseText mainTip = new TranslatableText("tooltip.sweet_potato.enchanted_sweet_potato.effects");
         tooltip.add(mainTip);
 

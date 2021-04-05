@@ -12,14 +12,17 @@ import org.featurehouse.spm.SPMFools
 import org.featurehouse.spm.screen.DeepDarkFantasyScreenHandler
 
 @Environment(EnvType.CLIENT)
+/**
+ * @see net.minecraft.client.gui.screen.ingame.AbstractFurnaceScreen
+ */
 class DeepDarkFantasyScreen(handler: DeepDarkFantasyScreenHandler, inventory: PlayerInventory, title: Text) : HandledScreen<DeepDarkFantasyScreenHandler>(handler, inventory, title) {
     override fun drawBackground(matrices: MatrixStack?, delta: Float, mouseX: Int, mouseY: Int) {
         this.client!!.textureManager.bindTexture(BACKGROUND_TEXTURE)
-        this.drawTexture(matrices, this.x, this.y, 0, 0, this.backgroundWidth, this.backgroundHeight)
+        this.drawTexture(matrices, this.width, this.height, 0, 0, this.backgroundWidth, this.backgroundHeight)
         if (this.handler.isWorking)
-            this.drawTexture(matrices, this.x + 81, this.y + 31, 176, 17, 1, 18)
+            this.drawTexture(matrices, this.width + 81, this.height + 31, 176, 17, 1, 18)
         val progress: Int = this.handler.sublimateProcess
-        this.drawTexture(matrices, this.x + 74, this.y + 43, 176, 0, progress + 1, 16)
+        this.drawTexture(matrices, this.width + 74, this.height + 43, 176, 0, progress + 1, 16)
     }
 
     override fun drawForeground(matrices: MatrixStack?, mouseX: Int, mouseY: Int) {

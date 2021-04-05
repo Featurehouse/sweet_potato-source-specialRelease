@@ -23,7 +23,7 @@ class NullPointerExceptionModelPredicateProvider : ModelPredicateProvider {
     private val value = AngleInterpolator()
     private val speed = AngleInterpolator()
 
-    override fun call(stack: ItemStack, world: ClientWorld?, livingEntity: LivingEntity?): Float {
+    override fun call(stack: ItemStack, world: ClientWorld?, livingEntity: LivingEntity?, seed: Int): Float {
         val entity: Entity? = livingEntity ?: stack.holder
         entity ?: return 0.0F
         var clientWorld: ClientWorld? = world
@@ -38,7 +38,7 @@ class NullPointerExceptionModelPredicateProvider : ModelPredicateProvider {
             when {
                 bl -> e = (livingEntity as LivingEntity).yaw.toDouble()
                 entity is ItemFrameEntity -> e = this.getItemFrameAngleOffset(entity)
-                entity is ItemEntity -> e = (180.0F - entity.method_27314(0.5F) / 6.2831855F * 360.0F).toDouble()
+                entity is ItemEntity -> e = (180.0F - entity.getRotation(0.5F) / 6.2831855F * 360.0F).toDouble()
                 livingEntity != null -> e = livingEntity.bodyYaw.toDouble()
             }
 

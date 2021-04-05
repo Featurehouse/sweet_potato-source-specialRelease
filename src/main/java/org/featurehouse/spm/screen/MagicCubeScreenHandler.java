@@ -92,7 +92,7 @@ public class MagicCubeScreenHandler extends ScreenHandler {
                 } else if (this.mainFuelSlot.canInsert(itemStack2)) {
                     if (!this.insertItem(itemStack2, 6, 7, false))
                         return ItemStack.EMPTY;
-                } else if (itemStack.getItem().isIn(RAW_SWEET_POTATOES) && itemStack.getCount() == 1) {
+                } else if (RAW_SWEET_POTATOES.contains(itemStack.getItem()) && itemStack.getCount() == 1) {
                     if (!this.insertOne(itemStack2, 0, 3, false))
                         return ItemStack.EMPTY;
                 } else if (index < 35) {

@@ -33,7 +33,11 @@ public class CrackedRockBlock extends Block {
             "polished_blackstone_bricks",
             "cracked_polished_blackstone_bricks",
             "gilded_blackstone",
-            "basalt"
+            "basalt",
+            "tuff",
+            "calcite",
+            "deepslate",
+            "smooth_basalt"
     );
 
     public static final Property<String> BLOCK = new StringProperty("name", MICROHAMMER_BREAKABLE);

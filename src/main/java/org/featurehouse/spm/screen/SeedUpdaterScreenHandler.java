@@ -66,7 +66,7 @@ public class SeedUpdaterScreenHandler extends ForgingScreenHandler {
     }
 
     @Override
-    protected ItemStack onTakeOutput(PlayerEntity player, @NotNull ItemStack stack) {
+    protected void onTakeOutput(PlayerEntity player, @NotNull ItemStack stack) {
         //stack.onCraft(player.world, player, stack.getCount());
         this.output.unlockLastRecipe(player);
         this.putStack(0);   // method_29539
@@ -83,7 +83,7 @@ public class SeedUpdaterScreenHandler extends ForgingScreenHandler {
             LOGGER.info("Pigeon spawned at {}", parrotEntity.getPos());
         });
         player.incrementStat(SPMMain.CROP_UPGRADED);
-        return stack;
+        //return stack;
     }
 
     private void putStack(int i) {

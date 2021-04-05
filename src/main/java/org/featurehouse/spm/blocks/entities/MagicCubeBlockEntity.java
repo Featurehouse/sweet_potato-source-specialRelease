@@ -1,15 +1,6 @@
 package org.featurehouse.spm.blocks.entities;
 
 import bilibili.ywsuoyi.block.AbstractLockableContainerBlockEntity;
-import net.minecraft.world.World;
-import org.featurehouse.spm.SPMMain;
-import org.featurehouse.spm.blocks.MagicCubeBlock;
-import org.featurehouse.spm.items.RawSweetPotatoBlockItem;
-import org.featurehouse.spm.resource.magicalenchantment.WeightedStatusEffect;
-import org.featurehouse.spm.screen.MagicCubeScreenHandler;
-import org.featurehouse.spm.util.effects.StatusEffectInstances;
-import org.featurehouse.spm.util.properties.magiccube.IntMagicCubeProperties;
-import org.featurehouse.spm.util.properties.state.BooleanStateManager;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
@@ -29,11 +20,20 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.minecraft.util.collection.WeightedPicker;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.world.World;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.featurehouse.spm.SPMMain;
+import org.featurehouse.spm.blocks.MagicCubeBlock;
+import org.featurehouse.spm.items.RawSweetPotatoBlockItem;
+import org.featurehouse.spm.resource.magicalenchantment.WeightedStatusEffect;
+import org.featurehouse.spm.screen.MagicCubeScreenHandler;
+import org.featurehouse.spm.util.collection.WeightedList;
+import org.featurehouse.spm.util.effects.StatusEffectInstances;
+import org.featurehouse.spm.util.properties.magiccube.IntMagicCubeProperties;
+import org.featurehouse.spm.util.properties.state.BooleanStateManager;
 import org.featurehouse.spm.util.tick.ITickable;
 import org.jetbrains.annotations.Nullable;
 
@@ -267,14 +267,14 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
     private List<StatusEffectInstance> calcEnchantments() {
         //TODO
         List<StatusEffectInstance> enchantmentList = new ObjectArrayList<>();
-        WeightedPicker WeightedPicker = new WeightedPicker();
-        WeightedStatusEffect.dump2WeightedPicker(WeightedPicker, WeightedStatusEffect.EFFECTS, withViceFuel());
-        if (WeightedPicker.isEmpty()) {
+        WeightedList<StatusEffectInstance> weightedList = new WeightedList<>();
+        WeightedStatusEffect.dump2weightedList(weightedList, WeightedStatusEffect.EFFECTS, withViceFuel());
+        if (weightedList.isEmpty()) {
             LOGGER.warn("No effects can be applied: empty weighted list");
             return Collections.emptyList();
         }
         for (byte times = 0; times < 5; ++times) {
-            enchantmentList.add(WeightedPicker.pickRandom(random));
+            enchantmentList.add(weightedList.pickRandom(random));
             if (random.nextBoolean()) break;
         }
         return enchantmentList;
@@ -299,15 +299,15 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
     }
 
     @Override
-    public void fromTag(BlockState state, NbtCompound tag) {
-        super.fromTag(state, tag);
+    public void readNbt(NbtCompound tag) {
+        super.readNbt(tag);
         this.mainFuelTime = tag.getShort("EnergyTime");
         this.viceFuelTime = tag.getShort("SublimateTime");
     }
 
     @Override
-    public NbtCompound toTag(NbtCompound tag) {
-        super.toTag(tag);
+    public NbtCompound writeNbt(NbtCompound tag) {
+        super.writeNbt(tag);
         tag.putShort("EnergyTime", this.mainFuelTime);
         tag.putShort("SublimateTime", this.viceFuelTime);
         return tag;
@@ -349,7 +349,7 @@ public class MagicCubeBlockEntity extends AbstractLockableContainerBlockEntity i
         if (slot == 7)
             return item == SPMMain.POTATO_POWDER;
         if ((slot >= 3 && slot <= 5) || slot > 7 || slot < 0) return false;
-        return item.isIn(SPMMain.RAW_SWEET_POTATOES) && toSlotStack.isEmpty();
+        return SPMMain.RAW_SWEET_POTATOES.contains(item) && toSlotStack.isEmpty();
     }
 
     @Override

@@ -2,14 +2,12 @@ package org.featurehouse.spm.blocks;
 
 import bilibili.ywsuoyi.block.AbstractBlockWithEntity;
 import com.google.common.collect.ImmutableList;
-import net.minecraft.block.entity.BlockEntityType;
-import org.featurehouse.spm.SPMMain;
-import org.featurehouse.spm.blocks.entities.MagicCubeBlockEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -21,8 +19,9 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import org.featurehouse.spm.SPMMain;
+import org.featurehouse.spm.blocks.entities.MagicCubeBlockEntity;
 
 import java.util.List;
 import java.util.Random;

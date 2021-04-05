@@ -3,7 +3,7 @@ package org.featurehouse.spm.resource.magicalenchantment;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.util.collection.WeightedList;
+import org.featurehouse.spm.util.collection.WeightedList;
 
 import java.util.Collection;
 

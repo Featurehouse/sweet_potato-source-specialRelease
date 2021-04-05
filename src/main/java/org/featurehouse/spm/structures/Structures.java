@@ -26,7 +26,7 @@ public class Structures {
                 .defaultConfig(8, 2, ELEVATOR_ALTAR_STRUCTURE.hashCode())
                 .adjustsSurface()
                 .register();
-        RegistryKey<ConfiguredStructureFeature<?, ?>> key = RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_WORLDGEN, id("elevator_altar"));
+        RegistryKey<ConfiguredStructureFeature<?, ?>> key = RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_KEY, id("elevator_altar"));
         BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE, key.getValue(), ELEVATOR_ALTAR_CONFIGURED);
 
         BiomeModifications.addStructure(BiomeSelectors.foundInOverworld().or(ctx -> ctx.getBiomeKey().getValue().getNamespace().equals("shurlin")), key);
